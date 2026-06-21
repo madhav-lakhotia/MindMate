@@ -4,7 +4,7 @@ import joblib
 import pandas as pd
 import numpy as np
 import os
-import pickel
+import pickle
 from jinja2 import ChoiceLoader, FileSystemLoader
 from werkzeug.security import generate_password_hash, check_password_hash
 import webbrowser
