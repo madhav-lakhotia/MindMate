@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindMate Dashboard</title>
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+
+    <div class="dashboard-container">
+
+        <div class="col-lg-2 sidebar">
+            <div class="logo-section">
+                <h5>🧠 MindMate</h5>
+            </div>
+            <ul class="nav-menu">
+                <li class="active" onclick="window.location.href='/dashboard'">
+                    <i class="fa-solid fa-house"></i> Dashboard
+                </li>
+                <li onclick="window.location.href='/questionnaire'">
+                    <i class="fa-solid fa-triangle-exclamation"></i> Daily Check-in
+                </li>
+                <li onclick="window.location.href='/wellness-twin'">
+                    <i class="fa-solid fa-brain"></i> Wellness Twin
+                </li>
+                <li onclick="window.location.href='/recovery-board'">
+                    <i class="fa-solid fa-seedling"></i> Recovery Board
+                </li>
+                <li onclick="window.location.href='/trigger-analysis'">
+                    <i class="fa-solid fa-chart-line"></i> Trigger Analysis
+                </li>
+                <li onclick="window.location.href='/emergency'">
+                    <i class="fa-solid fa-triangle-exclamation"></i> Emergency Support
+                </li>
+                <li onclick="window.location.href='/profile'">
+                    <i class="fa-solid fa-triangle-exclamation"></i> Settings
+                </li>
+                <li onclick="window.location.href='/help'">
+                <i class="fa-solid fa-headset"></i>
+                Contact Support
+            </li>
+
+            </ul>
+
+            <button class="logout-btn" onclick="logout()">
+                Logout
+            </button>
+
+            <div class="sidebar-leaves">
+                <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="botanicalGrad1" x1="0%" y1="100%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#cfc0ff" stop-opacity="0.75" />
+                            <stop offset="100%" stop-color="#b19eff" stop-opacity="0.55" />
+                        </linearGradient>
+                        <linearGradient id="botanicalGrad2" x1="0%" y1="100%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#ffd4f0" stop-opacity="0.8" />
+                            <stop offset="100%" stop-color="#cfb6ff" stop-opacity="0.6" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M 10 240 Q 40 180 85 130 T 170 80" stroke="url(#botanicalGrad1)" stroke-width="3" fill="none" opacity="0.4" stroke-linecap="round"/>
+                    <path d="M 45 175 Q 80 160 120 145" stroke="url(#botanicalGrad1)" stroke-width="2" fill="none" opacity="0.3" stroke-linecap="round"/>
+                    <path d="M 65 150 Q 110 120 165 115" stroke="url(#botanicalGrad1)" stroke-width="2" fill="none" opacity="0.3" stroke-linecap="round"/>
+                    <path d="M 48 135 C 45 90, 42 50, 52 28 C 65 50, 68 90, 52 135 Z" fill="url(#botanicalGrad2)" />
+                    <path d="M 48 135 Q 49 80 52 28" stroke="rgba(255,255,255,0.4)" stroke-width="1" fill="none" />
+                    <path d="M 32 148 C 15 130, 10 115, 12 102 C 28 110, 38 125, 36 145 Z" fill="url(#botanicalGrad1)" />
+                    <path d="M 34 146 Q 24 125 12 102" stroke="rgba(255,255,255,0.3)" stroke-width="0.8" fill="none" />
+                    <path d="M 42 125 C 25 100, 20 80, 28 62 C 42 75, 52 98, 45 120 Z" fill="url(#botanicalGrad1)" />
+                    <path d="M 43 122 Q 33 95 28 62" stroke="rgba(255,255,255,0.3)" stroke-width="0.9" fill="none" />
+                    <path d="M 66 150 C 75 110, 95 85, 150 102 C 120 135, 95 155, 68 152 Z" fill="url(#botanicalGrad2)" />
+                    <path d="M 66 150 Q 105 125 150 102" stroke="rgba(255,255,255,0.4)" stroke-width="1.2" fill="none" />
+                    <path d="M 105 152 C 125 135, 155 140, 202 165 C 165 185, 130 180, 107 156 Z" fill="url(#botanicalGrad1)" />
+                    <path d="M 105 152 Q 150 155 202 165" stroke="rgba(255,255,255,0.4)" stroke-width="1.2" fill="none" />
+                    <path d="M 132 178 C 155 175, 185 188, 222 215 C 185 225, 155 210, 134 182 Z" fill="url(#botanicalGrad2)" />
+                    <path d="M 132 178 Q 175 195 222 215" stroke="rgba(255,255,255,0.3)" stroke-width="1" fill="none" />
+                </svg>
+            </div>
+        </div>
+        
+        <main class="main-content">
+
+            <div class="top-header">
+                <div>
+                     <h1>Dashboard</h1>
+                    <p id="welcomeText">Welcome User 👋</p>
+                    <span>Here's your wellness summary.</span>
+                </div>
+
+                <div class="profile-section">
+                    <div class="notification">
+                        <i class="fa-regular fa-bell"></i>
+                    </div>
+                    <div class="user-info">
+                        <span id="userName">User</span>
+                        <img src="https://i.pravatar.cc/100" alt="profile">
+                    </div>
+                </div>
+            </div>
+
+            <div class="cards-grid">
+                
+                <div class="score-card">
+                    <h4>Wellness Index</h4>
+                    <h2>{{ (wellness_score * 10) | round | int }}%</h2>
+                    <p>Status: <span class="good">{{ wellness_level }}</span></p>
+                </div>
+
+                <div class="score-card">
+                    <h4>Stress Risk</h4>
+                    <h2>{{ (stress_score * 10) | round | int }}%</h2>
+                    <p>Risk Level: <span class="{{ stress_level | lower }}">{{ stress_level }}</span></p>
+                </div>
+
+                <div class="score-card">
+                    <h4>Anxiety Strain</h4>
+                    <h2>{{ (anxiety_score * 10) | round | int }}%</h2>
+                    <p>Range Status: <span class="{{ anxiety_level | lower }}">{{ anxiety_level }}</span></p>
+                </div>
+
+                <div class="score-card">
+                    <h4>Depression Score</h4>
+                    <h2>{{ (depression_score * 10) | round | int }}%</h2>
+                    <p>Range Status: <span class="{{ depression_level | lower }}">{{ depression_level }}</span></p>
+                </div>
+
+                <div class="score-card">
+                    <h4>Burnout Risk</h4>
+                    <h2>{{ (burnout_score * 10) | round | int }}%</h2>
+                    <p>Fatigue Level: <span class="{{ burnout_level | lower }}">{{ burnout_level }}</span></p>
+                </div>
+
+                <div class="score-card">
+                    <h4>Sleep Disorder</h4>
+                    <h2>{{ (sleep_disorder_score * 10) | round | int }}%</h2>
+                    <p>Risk Status: <span class="{{ sleep_disorder_level | lower }}">{{ sleep_disorder_level }}</span></p>
+                </div>
+
+            </div>
+            
+            <div class="overview-wrapper">
+                <div class="overview-card">
+    <h3>Overview</h3>
+    <div class="graph-box">
+        <div class="graph-header">
+            <div class="legend"><span class="dot purple"></span>Wellness</div>
+            <div class="legend"><span class="dot blue"></span>Stress</div>
+            <div class="legend"><span class="dot pink"></span>Burnout</div>
+        </div>
+        
+        <div class="chart-container" style="position: relative; height: 240px; width: 100%; margin-top: 15px;">
+            <canvas id="mindmatePremiumChart"></canvas>
+        </div>
+    </div>
+</div>
+<div class="insight-card">
+    <div class="brain-icon">🧠</div>
+    <h4>AI Insight</h4>
+    <p style="font-weight: 600; color: #1f2937;">{{ ai_headline }}</p>
+    <span style="color: #6b7280; display: block; margin-top: 5px;">{{ ai_suggestion }}</span>
+</div>
+            </div>
+
+            <div class="bottom-grid">
+                <div class="indicator-card">
+                    <h3>Key Indicators</h3>
+                    <div class="indicator">
+                        <span>😴 Sleep Hours</span>
+                        <strong>7.2 hrs</strong>
+                    </div>
+                    <div class="indicator">
+                        <span>💧 Water Intake</span>
+                        <strong>2.1 L</strong>
+                    </div>
+                    <div class="indicator">
+                        <span>🚶 Activity</span>
+                        <strong>6,430 Steps</strong>
+                    </div>
+                    <div class="indicator">
+                        <span>📱 Screen Time</span>
+                        <strong>5.4 hrs</strong>
+                    </div>
+                </div>
+
+                <div class="achievement-card">
+                    <div class="achievement-icon">🏆</div>
+                    <h3>Consistency Star</h3>
+                    <p>Completed recovery tasks for 7 days continuously.</p>
+                </div>
+            </div>
+
+            <div class="twin-card">
+                <h2>🧠 AI Wellness Twin</h2>
+                <div class="twin-grid">
+                    <div class="current-you">
+                        <h3>Current You</h3>
+                        <ul>
+                            <li>Stress : {{ stress_level }}</li>
+                            <li>Sleep : 6.5 hrs</li>
+                            <li>Mood : Average</li>
+                        </ul>
+                    </div>
+                    <div class="future-you">
+                        <h3>Future You</h3>
+                        <ul>
+                            <li>Stress : Low</li>
+                            <li>Sleep : 8 hrs</li>
+                            <li>Mood : Excellent</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+    // Verification Login Engine
+    const username = localStorage.getItem("loggedInUser");
+    if(!username){
+        window.location.href = "/";
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const welcomeText = document.getElementById("welcomeText");
+        const userName = document.getElementById("userName");
+
+        if(username){
+            if(welcomeText) welcomeText.innerHTML = `Welcome ${username} 👋`;
+            if(userName) userName.innerHTML = username;
+        } else {
+            if(welcomeText) welcomeText.innerHTML = "Welcome User 👋";
+            if(userName) userName.innerHTML = "User";
+        }
+    });
+
+
+    // Flask Core Logout Endpoints Alignment
+    function logout(){
+        localStorage.removeItem("loggedInUser");
+        window.location.href = "/";
+    }
+
+    // ====================================================
+// CHART.JS FULL INTERACTIVE HOVER TOOLTIP ENGINE
+// ====================================================
+document.addEventListener("DOMContentLoaded", () => {
+    const ctx = document.getElementById('mindmatePremiumChart');
+    if (!ctx) return;
+
+    // Jinja template arrays parsed safely directly from Flask SQLite pipelines
+    const wellnessData = {{ wellness_history | tojson }};
+    const stressData = {{ stress_history | tojson }};
+    const burnoutData = {{ burnout_history | tojson }};
+    
+    // Labels array logic for pichle 7 inputs checkpoints
+    const labels = [];
+    for (let i = 1; i <= wellnessData.length; i++) {
+        labels.push(`Check-in ${i}`);
+    }
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Wellness Index',
+                    data: wellnessData.map(v => Math.round(v * 10)), // Normalizing to percentage matrix
+                    borderColor: '#7209b7',
+                    backgroundColor: 'rgba(114, 9, 183, 0.05)',
+                    borderWidth: 4,
+                    pointRadius: 5,
+                    pointHoverRadius: 8,
+                    tension: 0.3, // Curve smoothness engine
+                    fill: true
+                },
+                {
+                    label: 'Stress Risk',
+                    data: stressData.map(v => Math.round(v * 10)),
+                    borderColor: '#2ec4b6',
+                    backgroundColor: 'transparent',
+                    borderWidth: 4,
+                    pointRadius: 5,
+                    pointHoverRadius: 8,
+                    tension: 0.3
+                },
+                {
+                    label: 'Burnout Fatigue',
+                    data: burnoutData.map(v => Math.round(v * 10)),
+                    borderColor: '#ff007f',
+                    backgroundColor: 'transparent',
+                    borderWidth: 4,
+                    pointRadius: 5,
+                    pointHoverRadius: 8,
+                    tension: 0.3
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    labels: {
+                        font: { family: 'Poppins', size: 12, weight: '500' },
+                        usePointStyle: true
+                    }
+                },
+                tooltip: {
+                    enabled: true,
+                    backgroundColor: 'rgba(31, 41, 55, 0.9)', // Clean dark frosted tooltips
+                    titleFont: { family: 'Poppins', size: 13, weight: '600' },
+                    bodyFont: { family: 'Poppins', size: 12 },
+                    padding: 12,
+                    cornerRadius: 12,
+                    callbacks: {
+                        label: function(context) {
+                            return ` ${context.dataset.label}: ${context.raw}%`; // Append clean % signs on hover nodes
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    min: 0,
+                    max: 100,
+                    grid: { color: 'rgba(0, 0, 0, 0.03)' },
+                    ticks: {
+                        font: { family: 'Poppins', size: 11 },
+                        callback: value => value + '%'
+                    }
+                },
+                x: {
+                    grid: { display: false },
+                    ticks: { font: { family: 'Poppins', size: 11 } }
+                }
+            }
+        }
+    });
+});
+    </script>
+</body>
+</html>

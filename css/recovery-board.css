@@ -1,0 +1,428 @@
+/* Styles for recovery board page */
+/* ====================================================== */
+/* GLOBAL RESET & THEMING                                 */
+/* ====================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #f8f5ff;
+    color: #2d2d2d;
+    min-height: 100vh;
+}
+
+/* ====================================================== */
+/* LAYOUT BASE (FORCED SIDE-BY-SIDE DESIGN LIKE DASHBOARD) */
+/* ====================================================== */
+.dashboard-container {
+    display: flex !important;
+    flex-direction: row !important; /* Forces row format explicitly */
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* ====================================================== */
+/* SIDEBAR ARCHITECTURE (Dashboard Exact Standard)        */
+/* ====================================================== */
+.sidebar {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    height: auto;
+    border-right: 1px solid rgba(124, 92, 255, 0.08);
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+}
+
+.logo-section {
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 12;
+}
+
+.logo-section h5 {
+    color: #8b5cf6;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    font-size: 20px;
+}
+
+.nav-menu {
+    list-style: none;
+    padding-left: 0;
+    position: relative;
+    z-index: 12;
+    margin-bottom: 10px;
+}
+
+.nav-menu li {
+    padding: 10px 16px !important;
+    margin-bottom: 6px;
+    border-radius: 12px !important;
+    color: #6f6f6f;
+    cursor: pointer;
+    transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    font-size: 15px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+
+.nav-menu li:hover, .nav-menu li.active {
+    background: #efe8ff;
+    color: #8b5cf6;
+    transform: translateX(4px);
+}
+
+.logout-btn {
+    margin-top: auto;
+    margin-bottom: 15px;
+    width: 100%;
+    border: 1px solid rgba(255, 125, 125, 0.1);
+    background: rgba(255, 244, 244, 0.8);
+    color: #ff7d7d;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    position: relative;
+    z-index: 12;
+    transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+    background: #ff7d7d;
+    color: #ffffff;
+}
+
+.sidebar-leaves {
+    position: absolute;
+    bottom: -10px;
+    left: -10px;
+    width: 115%;
+    pointer-events: none;
+    z-index: 11;
+    transform-origin: bottom left;
+    animation: leafSwayMotion 6s ease-in-out infinite alternate;
+}
+
+.sidebar-leaves svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+@keyframes leafSwayMotion {
+    0% { transform: scale(1) rotate(0deg); }
+    100% { transform: scale(1.02) rotate(2deg) translateY(-1px); }
+}
+
+/* ====================================================== */
+/* MAIN ENGINE CONTENT BLOCK                              */
+/* ====================================================== */
+.main-content {
+    flex: 1 !important;
+    padding: 35px;
+    margin-left: 280px !important; /* Matches sidebar width offset */
+    width: calc(100% - 280px);
+}
+
+.top-header {
+    margin-bottom: 30px;
+}
+
+.top-header h1 {
+    color: #37306b;
+    font-size: 34px;
+    margin-bottom: 6px;
+}
+
+.top-header p {
+    color: #7a7a7a;
+    font-size: 15px;
+}
+
+/* ====================================================== */
+/* DYNAMIC GRID ENGINE                                    */
+/* ====================================================== */
+.top-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 25px;
+    margin-bottom: 25px;
+}
+
+.middle-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-bottom: 25px;
+}
+
+.bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+/* ====================================================== */
+/* PREMIUM CARDS SHELLS                                   */
+/* ====================================================== */
+.card {
+    background: white;
+    border-radius: 24px;
+    padding: 25px;
+    box-shadow: 0 8px 30px rgba(160, 130, 255, 0.06);
+    transition: transform 0.3s ease;
+}
+
+.card h3 {
+    color: #37306b;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+/* ====================================================== */
+/* RECOVERY TASKS MANAGEMENT PANEL                        */
+/* ====================================================== */
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.task-list label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #444;
+    font-size: 15px;
+    padding: 10px 14px;
+    background: #faf8ff;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.task-list label:hover {
+    background: #f1ebff;
+}
+
+.task-list input[type="checkbox"] {
+    accent-color: #8b5cf6;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+/* ====================================================== */
+/* PROGRESS CIRCLE CONTAINER WRAPPER                      */
+/* ====================================================== */
+.progress-card {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.progress-circle {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+    background: conic-gradient(
+        #9f7aea 0deg,
+        #ff9ad5 var(--progress, 0deg),
+        #ececec var(--progress, 0deg),
+        #ececec 360deg
+    );
+    transition: 0.8s ease;
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.15);
+}
+
+.inner-circle {
+    width: 120px;
+    height: 120px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 700;
+    color: #4b2d8c;
+}
+
+#progressFeedback {
+    font-weight: 500;
+    color: #7a7a7a;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* ====================================================== */
+/* ROADMAP LOGISTIC SCHEDULER                             */
+/* ====================================================== */
+.roadmap {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.road-item {
+    background: #faf7ff;
+    padding: 14px 18px;
+    border-radius: 14px;
+    color: #555;
+    font-size: 14.5px;
+    border-left: 4px solid #e2d6ff;
+}
+
+/* ====================================================== */
+/* FOCUS AREAS GRAPH METRIC PIPELINES                     */
+/* ====================================================== */
+.progress-item {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #444;
+    font-size: 14.5px;
+}
+
+.bar {
+    width: 100%;
+    height: 10px;
+    background: #ececec;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.fill {
+    height: 100%;
+    border-radius: 20px;
+    background: linear-gradient(90deg, #ec4899, #8b5cf6);
+    width: 0%;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ====================================================== */
+/* PREMIUM INSIGHTS SPECIAL COATED PANELS                 */
+/* ====================================================== */
+.insight-card {
+    margin-bottom: 25px;
+    background: linear-gradient(135deg, #fff1f8, #f4eeff);
+    border-left: 5px solid #ec4899;
+}
+
+.insight-card p {
+    color: #444;
+    line-height: 1.8;
+    font-size: 15px;
+}
+
+/* ====================================================== */
+/* STREAK & COMPONENT HOUSINGS                            */
+/* ====================================================== */
+.streak-card {
+    text-align: center;
+}
+
+.streak-card h2 {
+    font-size: 46px;
+    color: #8b5cf6;
+    margin: 12px 0;
+    font-weight: 700;
+}
+
+.motivation-card {
+    background: linear-gradient(135deg, #ffe9f5, #f3ecff);
+    border-left: 5px solid #8b5cf6;
+}
+
+.motivation-card p {
+    line-height: 1.8;
+    color: #444;
+    font-size: 15px;
+    font-style: italic;
+}
+
+/* ====================================================== */
+/* 🛠️ FIXED RESPONSIVE DESIGN BREAKPOINTS (DASHBOARD SYNC) */
+/* ====================================================== */
+@media (max-width: 1200px) {
+    .top-grid, .middle-grid, .bottom-grid {
+        grid-template-columns: 1fr !important; /* Cards stack vertically nicely */
+        gap: 20px !important;
+    }
+}
+
+@media (max-width: 992px) {
+    .sidebar {
+        width: 80px !important;
+        padding: 20px 5px !important;
+    }
+    .logo-text, .sidebar li span {
+        display: none !important; /* Hide text nodes for compact screen view */
+    }
+    .sidebar li {
+        justify-content: center !important;
+        padding: 15px !important;
+    }
+    .main-content {
+        margin-left: 80px !important;
+        width: calc(100% - 80px) !important;
+        padding: 20px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-container {
+        flex-direction: column !important; /* Stack sidebar on top for screens that are too small */
+    }
+    .sidebar {
+        position: relative !important;
+        width: 100% !important;
+        height: auto !important;
+        padding: 15px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    .logo-section {
+        margin-bottom: 15px !important;
+    }
+    .sidebar nav, .sidebar .menu {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 10px !important;
+    }
+    .sidebar li {
+        padding: 10px 12px !important;
+    }
+    .main-content {
+        margin-left: 0 !important;
+        width: 100% !important;
+        padding: 15px !important;
+    }
+}

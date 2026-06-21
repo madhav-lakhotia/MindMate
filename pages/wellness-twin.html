@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindMate - Wellness Twin</title>
+     <link rel="stylesheet" href="/css/global.css">
+
+    <link rel="stylesheet" href="/css/wellness-twin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="col-lg-2 sidebar">
+    <div class="logo-section">
+        <h5>🧠 MindMate</h5>
+    </div>
+
+    <ul class="nav-menu">
+        <li onclick="window.location.href='/dashboard'">
+            <i class="fa-solid fa-house"></i> Dashboard
+        </li>
+        <li onclick="window.location.href='/questionnaire'">
+            <i class="fa-solid fa-triangle-exclamation"></i> Daily Check-in
+        </li>
+        <li class="active"  onclick="window.location.href='/wellness-twin'">
+            <i class="fa-solid fa-brain"></i> Wellness Twin
+        </li>
+        <li onclick="window.location.href='/recovery-board'">
+            <i class="fa-solid fa-seedling"></i> Recovery Board
+        </li>
+        <li onclick="window.location.href='/trigger-analysis'">
+            <i class="fa-solid fa-chart-line"></i> Trigger Analysis
+        </li>
+        <li onclick="window.location.href='/emergency'">
+            <i class="fa-solid fa-triangle-exclamation"></i> Emergency Support
+        </li>
+        <li onclick="window.location.href='/profile'">
+            <i class="fa-solid fa-triangle-exclamation"></i> Settings
+        </li>
+        <li onclick="window.location.href='/help'">
+                <i class="fa-solid fa-headset"></i>
+                Contact Support
+            </li>
+    </ul>
+
+    <button class="logout-btn" onclick="logout()">
+        Logout
+    </button>
+
+    <div class="sidebar-leaves">
+        <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="botanicalGrad1" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#cfc0ff" stop-opacity="0.75" />
+                    <stop offset="100%" stop-color="#b19eff" stop-opacity="0.55" />
+                </linearGradient>
+                <linearGradient id="botanizedGrad2" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#ffd4f0" stop-opacity="0.8" />
+                    <stop offset="100%" stop-color="#cfb6ff" stop-opacity="0.6" />
+                </linearGradient>
+            </defs>
+            <path d="M 10 240 Q 40 180 85 130 T 170 80" stroke="url(#botanicalGrad1)" stroke-width="3" fill="none" opacity="0.4" stroke-linecap="round"/>
+            <path d="M 45 175 Q 80 160 120 145" stroke="url(#botanicalGrad1)" stroke-width="2" fill="none" opacity="0.3" stroke-linecap="round"/>
+            <path d="M 65 150 Q 110 120 165 115" stroke="url(#botanicalGrad1)" stroke-width="2" fill="none" opacity="0.3" stroke-linecap="round"/>
+            <path d="M 48 135 C 45 90, 42 50, 52 28 C 65 50, 68 90, 52 135 Z" fill="url(#botanizedGrad2)" />
+            <path d="M 48 135 Q 49 80 52 28" stroke="rgba(255,255,255,0.4)" stroke-width="1" fill="none" />
+            <path d="M 32 148 C 15 130, 10 115, 12 102 C 28 110, 38 125, 36 145 Z" fill="url(#botanicalGrad1)" />
+            <path d="M 34 146 Q 24 125 12 102" stroke="rgba(255,255,255,0.3)" stroke-width="0.8" fill="none" />
+            <path d="M 42 125 C 25 100, 20 80, 28 62 C 42 75, 52 98, 45 120 Z" fill="url(#botanicalGrad1)" />
+            <path d="M 43 122 Q 33 95 28 62" stroke="rgba(255,255,255,0.3)" stroke-width="0.9" fill="none" />
+            <path d="M 66 150 C 75 110, 95 85, 150 102 C 120 135, 95 155, 68 152 Z" fill="url(#botanizedGrad2)" />
+            <path d="M 66 150 Q 105 125 150 102" stroke="rgba(255,255,255,0.4)" stroke-width="1.2" fill="none" />
+            <path d="M 105 152 C 125 135, 155 140, 202 165 C 165 185, 130 180, 107 156 Z" fill="url(#botanicalGrad1)" />
+            <path d="M 105 152 Q 150 155 202 165" stroke="rgba(255,255,255,0.4)" stroke-width="1.2" fill="none" />
+            <path d="M 132 178 C 155 175, 185 188, 222 215 C 185 225, 155 210, 134 182 Z" fill="url(#botanizedGrad2)" />
+            <path d="M 132 178 Q 175 195 222 215" stroke="rgba(255,255,255,0.3)" stroke-width="1" fill="none" />
+        </svg>
+    </div>
+</div>
+    <div class="main-content">
+
+        <div class="header">
+            <div>
+                <h1>Wellness Twin</h1>
+                <p>See how small changes today build a better tomorrow.</p>
+            </div>
+            <button onclick="triggerOptimizationSimulation()">Customize Future B</button>
+        </div>
+
+        <div class="comparison-wrapper">
+
+            <div class="future-card-left">
+                <h2>Future A</h2>
+                <div class="path current">Current Path</div>
+
+                <img src="https://i.ibb.co/BVJ2cTk7/future-A.png" 
+                     class="future-image" 
+                     alt="Future A" 
+                     width="250" 
+                     height="160"
+                     style="width: 250px !important; height: 160px !important; object-fit: cover !important;">
+
+                <div class="stat-item">
+                    <span class="label">Energy</span>
+                    <div class="red-bar">
+                        <div class="red-fill" id="energyAFill" style="width:28%;"></div>
+                    </div>
+                    <span class="red-score" id="energyAText">28%</span>
+                </div>
+
+                <div class="stat-item">
+                    <span class="label">Focus</span>
+                    <div class="red-bar">
+                        <div class="red-fill" id="focusAFill" style="width:35%;"></div>
+                    </div>
+                    <span class="red-score" id="focusAText">35%</span>
+                </div>
+
+                <div class="stat-item">
+                    <span class="label">Stress Level</span>
+                    <div class="red-bar">
+                        <div class="red-fill" id="stressAFill" style="width:72%;"></div>
+                    </div>
+                    <span class="red-score" id="stressAText">72%</span>
+                </div>
+
+                <div class="stat-item">
+                    <span class="label">Burnout Risk</span>
+                    <div class="red-bar">
+                        <div class="red-fill" id="burnoutAFill" style="width:81%;"></div>
+                    </div>
+                    <span class="red-score" id="burnoutAText">81%</span>
+                </div>
+
+                <div class="stat-item" style="font-weight: 700;">
+                    <span class="label">Wellness Score</span>
+                    <div class="red-bar">
+                        <div class="red-fill" id="scoreAFill" style="width:32%;"></div>
+                    </div>
+                    <span class="red-score" id="scoreAText">32/100</span>
+                </div>
+            </div>
+
+            <div class="vs-circle">VS</div>
+
+            <div class="future-card-right">
+                <h2>Future B</h2>
+                <div class="path better">Better Path</div>
+
+                <img src="https://i.ibb.co/TM01CcB6/future-B.png" 
+                     class="future-image" 
+                     alt="Future B" 
+                     width="250" 
+                     height="160"
+                     style="width: 250px !important; height: 160px !important; object-fit: cover !important;">
+
+                <div class="stat-item">
+                    <span class="label">Energy</span>
+                    <div class="green-bar">
+                        <div class="green-fill" id="energyBFill" style="width:78%;"></div>
+                    </div>
+                    <span class="green-score" id="energyBText">78%</span>
+                </div>
+
+                <div class="stat-item">
+                    <span class="label">Focus</span>
+                    <div class="green-bar">
+                        <div class="green-fill" id="focusBFill" style="width:82%;"></div>
+                    </div>
+                    <span class="green-score" id="focusBText">82%</span>
+                </div>
+
+                <div class="stat-item">
+                    <span class="label">Stress Level</span>
+                    <div class="green-bar">
+                        <div class="green-fill" id="stressBFill" style="width:25%;"></div>
+                    </div>
+                    <span class="green-score" id="stressBText">25%</span>
+                </div>
+
+                <div class="stat-item">
+                    <span class="label">Burnout Risk</span>
+                    <div class="green-bar">
+                        <div class="green-fill" id="burnoutBFill" style="width:18%;"></div>
+                    </div>
+                    <span class="green-score" id="burnoutBText">18%</span>
+                </div>
+
+                <div class="stat-item" style="font-weight: 700;">
+                    <span class="label">Wellness Score</span>
+                    <div class="green-bar">
+                        <div class="green-fill" id="scoreBFill" style="width:78%;"></div>
+                    </div>
+                    <span class="green-score" id="scoreBText">78/100</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="messages">
+            <div class="message-left" id="insightTextA">
+                ⚠️ This path may lead to chronic fatigue, low productivity, and heavy burnout vectors.
+            </div>
+            <div class="message-right" id="insightTextB">
+                🌱 Small daily habits and task completion will drive a healthier, balanced version of you.
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+const loggedInUser = localStorage.getItem("loggedInUser") || "default_user";
+
+window.onload = function() {
+    processTwinMetrics();
+};
+
+function processTwinMetrics() {
+    const metrics = JSON.parse(localStorage.getItem(`metrics_${loggedInUser}`)) || { sleep: 75, stress: 68, mindfulness: 52, streak: 7 };
+    
+    let defaultTasks = [
+        { id: 1, completed: true }, { id: 2, completed: false }, { id: 3, completed: true },
+        { id: 4, completed: false }, { id: 5, completed: false }, { id: 6, completed: false }
+    ];
+    let userTasks = JSON.parse(localStorage.getItem(`tasks_${loggedInUser}`)) || defaultTasks;
+    let completedCount = userTasks.filter(t => t.completed).length;
+    let taskRatio = completedCount / userTasks.length;
+
+    // FUTURE A COMPUTATIONS
+    let currentStress = metrics.stress;
+    let currentBurnout = Math.min(Math.round(metrics.stress * 1.15), 98);
+    let currentEnergy = Math.max(Math.round(metrics.sleep * 0.45), 15);
+    let currentFocus = Math.max(Math.round((metrics.sleep + metrics.mindfulness) / 2.8), 20);
+    let overallScoreA = Math.round((currentEnergy + currentFocus + (100 - currentStress)) / 3);
+
+    document.getElementById("energyAText").innerText = currentEnergy + "%";
+    document.getElementById("energyAFill").style.width = currentEnergy + "%";
+
+    document.getElementById("focusAText").innerText = currentFocus + "%";
+    document.getElementById("focusAFill").style.width = currentFocus + "%";
+
+    document.getElementById("stressAText").innerText = currentStress + "%";
+    document.getElementById("stressAFill").style.width = currentStress + "%";
+
+    document.getElementById("burnoutAText").innerText = currentBurnout + "%";
+    document.getElementById("burnoutAFill").style.width = currentBurnout + "%";
+
+    document.getElementById("scoreAText").innerText = overallScoreA + "/100";
+    document.getElementById("scoreAFill").style.width = overallScoreA + "%";
+
+    // FUTURE B COMPUTATIONS
+    let optimizedEnergy = Math.min(currentEnergy + Math.round(taskRatio * 30) + 25, 95);
+    let optimizedFocus = Math.min(currentFocus + Math.round(taskRatio * 35) + 20, 94);
+    let optimizedStress = Math.max(currentStress - Math.round(taskRatio * 20) - 15, 18);
+    let optimizedBurnout = Math.max(currentBurnout - Math.round(taskRatio * 45) - 15, 12);
+    let overallScoreB = Math.round((optimizedEnergy + optimizedFocus + (100 - optimizedStress)) / 3);
+
+    updateFutureBCards(optimizedEnergy, optimizedFocus, optimizedStress, optimizedBurnout, overallScoreB);
+}
+
+function updateFutureBCards(energy, focus, stress, burnout, score) {
+    document.getElementById("energyBText").innerText = energy + "%";
+    document.getElementById("energyBFill").style.width = energy + "%";
+
+    document.getElementById("focusBText").innerText = focus + "%";
+    document.getElementById("focusBFill").style.width = focus + "%";
+
+    document.getElementById("stressBText").innerText = stress + "%";
+    document.getElementById("stressBFill").style.width = stress + "%";
+
+    document.getElementById("burnoutBText").innerText = burnout + "%";
+    document.getElementById("burnoutBFill").style.width = burnout + "%";
+
+    document.getElementById("scoreBText").innerText = score + "/100";
+    document.getElementById("scoreBFill").style.width = score + "%";
+}
+
+function triggerOptimizationSimulation() {
+    updateFutureBCards(98, 95, 12, 8, 97);
+    document.getElementById("insightTextB").innerText = "🔥 Ideal State Generated! High habits compliance completely eliminates burnout risks and builds premium wellness score vectors.";
+}
+</script>
+</body>
+</html>

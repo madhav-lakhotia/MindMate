@@ -1,0 +1,349 @@
+/* =========================
+   GLOBAL
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:linear-gradient(
+        135deg,
+        #fffcff 0%,
+        #faf5ff 50%,
+        #f7fffb 100%
+    );
+
+    color:#34355f;
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+}
+
+/* =========================
+   ABOUT SECTION
+========================= */
+
+.about-section{
+    width:90%;
+    margin:100px auto;
+}
+
+.about-container{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:60px;
+}
+
+/* =========================
+   LEFT SIDE
+========================= */
+
+.about-left{
+    flex:1;
+}
+
+.about-badge{
+    display:inline-block;
+
+    padding:12px 22px;
+
+    background:#f4e9ff;
+
+    color:#8d66ff;
+
+    border-radius:50px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    margin-bottom:25px;
+}
+
+.about-left h2{
+    font-size:3.5rem;
+
+    line-height:1.2;
+
+    margin-bottom:25px;
+
+    color:#34355f;
+}
+
+.about-left h2 span{
+
+    display:block;
+
+    background:linear-gradient(
+        90deg,
+        #ff93cc,
+        #9f82ff
+    );
+
+    background-clip:text;
+    -webkit-background-clip:text;
+
+    color:transparent;
+    -webkit-text-fill-color:transparent;
+}
+
+.about-left p{
+
+    color:#666;
+
+    font-size:1.1rem;
+
+    line-height:1.9;
+
+    margin-bottom:20px;
+
+    max-width:700px;
+}
+
+/* =========================
+   STATS
+========================= */
+
+.about-stats{
+
+    display:flex;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    margin-top:40px;
+}
+
+.stat-box{
+
+    background:white;
+
+    padding:25px 35px;
+
+    border-radius:25px;
+
+    min-width:170px;
+
+    text-align:center;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.05);
+
+    transition:.4s ease;
+}
+
+.stat-box:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+    0 20px 35px rgba(179,156,237,.18);
+}
+
+.stat-box h3{
+
+    font-size:2rem;
+
+    color:#8d66ff;
+
+    margin-bottom:8px;
+}
+
+.stat-box p{
+
+    margin:0;
+
+    color:#666;
+
+    font-size:.95rem;
+}
+
+/* =========================
+   RIGHT SIDE
+========================= */
+
+.about-right{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:30px;
+}
+
+/* =========================
+   MISSION & VISION CARDS
+========================= */
+
+.mission-card{
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:30px;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.05);
+
+    transition:.4s ease;
+}
+
+.mission-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:
+    0 20px 40px rgba(179,156,237,.18);
+}
+
+.mission-card .icon{
+
+    width:70px;
+    height:70px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:30px;
+
+    margin-bottom:20px;
+
+    background:#f4e9ff;
+}
+
+.mission-card h3{
+
+    font-size:1.6rem;
+
+    color:#34355f;
+
+    margin-bottom:12px;
+}
+
+.mission-card p{
+
+    color:#666;
+
+    line-height:1.8;
+}
+
+/* =========================
+   BACK TO HOME BUTTON
+========================= */
+
+.back-home{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin:80px 0 60px 0;
+}
+
+.back-home a{
+
+    text-decoration:none;
+
+    padding:16px 40px;
+
+    border-radius:50px;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    color:white;
+
+    background:linear-gradient(
+        135deg,
+        #9c7fff,
+        #ff93cc
+    );
+
+    box-shadow:
+    0 10px 25px rgba(156,127,255,.25);
+
+    transition:all .4s ease;
+}
+
+.back-home a:hover{
+
+    transform:
+    translateY(-5px)
+    scale(1.04);
+
+    background:linear-gradient(
+        135deg,
+        #8d66ff,
+        #ff7fbe
+    );
+
+    box-shadow:
+    0 15px 35px rgba(141,102,255,.35);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1200px){
+
+    .about-container{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .about-left p{
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .about-stats{
+        justify-content:center;
+    }
+
+    .about-right{
+        width:100%;
+    }
+}
+
+@media(max-width:768px){
+
+    .about-left h2{
+        font-size:2.5rem;
+    }
+
+    .about-stats{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .stat-box{
+        width:100%;
+        max-width:300px;
+    }
+
+    .mission-card{
+        padding:25px;
+    }
+
+    .back-home a{
+        padding:14px 30px;
+        font-size:15px;
+    }
+}

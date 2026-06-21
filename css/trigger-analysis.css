@@ -1,0 +1,337 @@
+/* ====================================================
+   🔥 EXACT PROFILE THEME SYNCED GLASS ENGINE
+   ==================================================== */
+:root {
+    --sidebar-width: 250px;
+    --primary-purple: #7c4dff;
+    --text-dark: #2d3748;
+    --text-muted: #718096;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', 'Inter', sans-serif;
+}
+
+body {
+    background: #fdf8fc; /* Pastel base matching your screen */
+    min-height: 100vh;
+    display: flex;
+    color: var(--text-dark);
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* --- THE EXACT FLOATING CIRCLES BACKGROUND LAYER --- */
+body::before, body::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.45;
+    z-index: 1;
+    pointer-events: none;
+}
+/* Pink Circle Top Right */
+body::before {
+    width: 250px;
+    height: 250px;
+    background: #fbcfe8;
+    top: 10%;
+    right: 15%;
+}
+/* Purple/Blue Circle Center Left */
+body::after {
+    width: 300px;
+    height: 300px;
+    background: #e0e7ff;
+    bottom: 15%;
+    left: 30%;
+}
+
+/* Extra decorative bubbles to clone your screenshot */
+.ambient-bubble-green {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: #d1fae5;
+    border-radius: 50%;
+    filter: blur(30px);
+    top: 35%;
+    right: 35%;
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.ambient-bubble-yellow {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: #fef3c7;
+    border-radius: 50%;
+    filter: blur(25px);
+    top: 5%;
+    left: 45%;
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* ====================================================
+   SIDEBAR & NAV ENGINE CLONED DIRECTLY FROM PROFILE.CSS
+   ==================================================== */
+.sidebar {
+    background: rgba(255, 255, 255, 0.75) !important;
+    backdrop-filter: blur(15px) !important;
+    -webkit-backdrop-filter: blur(15px) !important;
+    height: 100vh;
+    border-right: 1px solid rgba(124, 92, 255, 0.08) !important;
+    padding: 24px 16px !important;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo-section {
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 12;
+}
+
+.logo-section h5 {
+    color: #8b5cf6;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    font-size: 20px;
+}
+
+.nav-menu {
+    list-style: none;
+    padding-left: 0;
+    position: relative;
+    z-index: 12;
+    margin-bottom: 10px;
+}
+
+.nav-menu li {
+    padding: 10px 16px !important;
+    margin-bottom: 6px;
+    border-radius: 12px !important;
+    color: #6f6f6f;
+    cursor: pointer;
+    transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    font-size: 15px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-menu li i {
+    font-size: 14px;
+    width: 20px; /* Aligns icons perfectly straight */
+}
+
+.nav-menu li:hover, .nav-menu li.active {
+    background: #efe8ff !important;
+    color: #8b5cf6 !important;
+    transform: translateX(4px);
+}
+
+/* MATCHED EXPLICIT LOGOUT SYSTEM */
+.sidebar .logout-btn {
+    margin-top: auto !important;
+    margin-bottom: 15px !important;
+    width: 100% !important;
+    border: 1px solid rgba(255, 125, 125, 0.1) !important;
+    background: rgba(255, 244, 244, 0.8) !important;
+    color: #ff7d7d !important;
+    padding: 10px !important;
+    border-radius: 10px !important;
+    font-size: 15px !important;
+    font-weight: 500 !important;
+    position: relative;
+    z-index: 12;
+    transition: all 0.3s ease;
+    box-shadow: none !important; /* Removes old dashboard heavy gradient shadows */
+}
+
+.sidebar .logout-btn:hover {
+    background: #ff7d7d !important;
+    color: #ffffff !important;
+    transform: none !important;
+}
+
+/* LEAVES POSITION LOGIC ENGINE */
+.sidebar-leaves {
+    position: absolute;
+    bottom: -10px;
+    left: -10px;
+    width: 115%;
+    pointer-events: none;
+    z-index: 11;
+    transform-origin: bottom left;
+    animation: leafSwayMotion 6s ease-in-out infinite alternate;
+}
+
+.sidebar-leaves svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+@keyframes leafSwayMotion {
+    0% { transform: scale(1) rotate(0deg); }
+    100% { transform: scale(1.02) rotate(2deg) translateY(-1px); }
+}
+
+/* --- MAIN BODY INTERFACE CONTENT CONTAINER --- */
+.content-wrapper {
+    flex-grow: 1;
+    padding: 40px;
+    z-index: 5;
+    max-width: 1150px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 4px;
+}
+
+header p {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+/* --- THE SHARP ROUNDED CARDS STRUCTURAL LAYOUT --- */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    gap: 25px;
+    width: 100%;
+}
+
+.white-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.015);
+    border: 1px solid rgba(0, 0, 0, 0.01);
+}
+
+.white-card h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 18px;
+}
+
+.chart-box {
+    position: relative;
+    height: 200px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- INTERACTIVE BULLETS & RECENT BADGES --- */
+.insights-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.insights-stack p {
+    font-size: 13px;
+    color: #4a5568;
+    line-height: 1.5;
+    padding: 12px;
+    background: #f8fafc;
+    border-radius: 10px;
+}
+
+.badge-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.badge-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: #4a5568;
+    font-weight: 500;
+}
+
+.badge-pill {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 8px;
+}
+
+.badge-high { background: #ffe4e6; color: #f43f5e; }
+.badge-medium { background: #ffedd5; color: #ea580c; }
+.badge-low { background: #ecfdf5; color: #10b981; }
+.badge-healthy { background: #f0fdf4; color: #15803d; }
+
+
+/* --- Desktop layout ko safe rakh ke sirf responsive spacing --- */
+@media (max-width: 1200px) {
+    body {
+        flex-direction: column !important; /* Sidebar upar, content niche */
+    }
+    .sidebar, aside {
+        width: 100% !important;
+        height: auto !important;
+        position: relative !important;
+        padding: 20px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        background-image: none !important; /* Mobile pe background leaves overlap rokne ke liye */
+    }
+    .sidebar nav {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 10px !important;
+        margin-bottom: 20px;
+    }
+    .sidebar nav a {
+        padding: 10px 14px !important;
+        font-size: 14px !important;
+    }
+    .sidebar-brand {
+        margin-bottom: 20px !important;
+        padding-left: 0 !important;
+    }
+    .sidebar-footer {
+        width: 100% !important;
+        max-width: 300px;
+    }
+    .content-wrapper, .content, main {
+        width: 100% !important;
+        padding: 20px !important;
+    }
+    /* Grids stack properly */
+    .grid-container, .charts-grid, .info-grid, .dashboard-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+}

@@ -1,0 +1,742 @@
+/* Styles for questionnaire page */
+/* ====================================================
+   MINDMATE PREMIUM ASSESSMENT ARCHITECTURE SHEET
+   ==================================================== */
+
+.main-title {
+    color: #2f2f2f;
+    font-weight: 700;
+    font-size: 26px;
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.sub-title {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+/* PROGRESS BAR GRAPHICS */
+.progress-container-box {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    padding: 16px 24px;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(149,126,255,0.04);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.step-indicator {
+    font-weight: 600;
+    font-size: 14px;
+    color: #8b5cf6;
+}
+
+.percentage-label {
+    font-weight: 500;
+    font-size: 13px;
+    color: #6f6f6f;
+}
+
+.progress-bar-glow {
+    height: 10px;
+    background: #eadeff;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #8b5cf6, #ec4899);
+    border-radius: 20px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* HORIZONTAL RECTANGLE LAYOUT ENGINE */
+.assessment-section {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 24px 50px; 
+    box-shadow: 0 12px 35px rgba(149,126,255,.06);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    display: none;
+    transform: translateY(15px);
+    opacity: 0;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    width: 100%;
+}
+
+.assessment-section.active-section {
+    display: block;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.section-title {
+    font-weight: 600;
+    color: #1f2937;
+    font-size: 19px;
+}
+
+/* STACKED FULL-WIDTH RECTANGLE ROWS SLIDERS */
+.slider-stack-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.slider-row-item {
+    width: 100%;
+    margin-bottom: 24px; 
+}
+.slider-row-item:last-child {
+    margin-bottom: 0;
+}
+
+.slider-label {
+    font-size: 15px;
+    font-weight: 500;
+    color: #4b5563;
+    margin-bottom: 14px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.badge-value {
+    background: linear-gradient(135deg, #ece5ff, #fce7f3);
+    color: #8b5cf6;
+    padding: 3px 12px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(139, 92, 246, 0.08);
+}
+
+/* ====================================================
+   PREMIUM CUSTOM SLIDERS STYLING (MATCHING GRAPHICS VIBE)
+   ==================================================== */
+.custom-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 7px; /* Premium ultra-thin track design */
+    background: #e5e7eb;
+    border-radius: 10px;
+    outline: none;
+    transition: background 0.3s;
+}
+
+.custom-slider:focus {
+    box-shadow: none !important;
+}
+
+/* Webkit (Chrome, Safari, Edge) Custom Thumb Engine */
+.custom-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #ffffff !important;
+    border: 4px solid #8b5cf6 !important; /* Bold accent outline matching systems */
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.35) !important;
+    transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.custom-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    background: #efe8ff !important;
+}
+
+/* Mozilla Firefox Custom Thumb Engine */
+.custom-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #ffffff !important;
+    border: 4px solid #8b5cf6 !important;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.35) !important;
+    transition: transform 0.15s ease;
+}
+
+.custom-slider::-moz-range-thumb:hover {
+    transform: scale(1.2);
+}
+
+//* ====================================================
+   ACTION UTILITY BUTTONS (UNIFORM PREMIUM STYLING)
+   ==================================================== */
+
+/* PREVIOUS BUTTON: Clean, glassmorphic look with subtle purple border */
+.btn-prev {
+    background: rgba(255, 255, 255, 0.8) !important;
+    border: 1px solid #e1d8ff !important;
+    color: #8b5cf6 !important;
+    padding: 12px 30px !important; /* Increased height and padding for better feel */
+    border-radius: 14px !important; /* Uniform smooth corner radius */
+    font-weight: 600 !important;
+    font-size: 15px !important;
+    letter-spacing: 0.3px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.btn-prev:hover:not(:disabled) {
+    background: #efe8ff !important;
+    transform: translateY(-2px) !important; /* Standard lift interaction */
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.08) !important;
+}
+
+/* NEXT BUTTON: Solid premium purple with matching glow */
+.btn-next {
+    background: #8b5cf6 !important;
+    border: none !important;
+    color: white !important;
+    padding: 12px 36px !important; /* Matched size proportions */
+    border-radius: 14px !important;
+    font-weight: 600 !important;
+    font-size: 15px !important;
+    letter-spacing: 0.3px;
+    box-shadow: 0 6px 18px rgba(139, 92, 246, 0.25) !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.btn-next:hover {
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.4) !important;
+    transform: translateY(-2px) scale(1.02) !important; /* Symmetrical animation */
+    background: #7c4dff !important; /* Slight dark purple interaction */
+}
+
+/* SUBMIT BUTTON: Beautiful linear gradient (Purple to Deep Pink) matching logo accent */
+.btn-submit {
+    background: linear-gradient(135deg, #8b5cf6, #ec4899) !important;
+    border: none !important;
+    color: white !important;
+    padding: 12px 40px !important; /* Perfectly proportional breadth stretch */
+    border-radius: 14px !important;
+    font-weight: 600 !important;
+    font-size: 15px !important;
+    letter-spacing: 0.3px;
+    box-shadow: 0 8px 22px rgba(236, 72, 153, 0.25) !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.btn-submit:hover {
+    box-shadow: 0 12px 30px rgba(236, 72, 153, 0.4) !important;
+    transform: translateY(-2px) scale(1.02) !important; /* Perfect uniform hover action */
+}
+
+/* PREMIUM AI LOADING ENGINE */
+.ai-processing-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 10, 28, 0.88);
+    backdrop-filter: blur(15px);
+    z-index: 1000000 !important;
+}
+
+.ai-loader-ring {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #8b5cf6;
+    border-bottom-color: #ec4899;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: spinLoader 2s linear infinite;
+}
+
+.brain-icon-pulse {
+    font-size: 32px;
+    animation: iconPulse 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes spinLoader {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes iconPulse {
+    0% { transform: scale(0.85); }
+    100% { transform: scale(1.15); }
+}
+
+.processing-text {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+
+/* ====================================================
+   POST-SUBMISSION DYNAMIC VIEWPORT (FIXED STATIC BARS)
+   ==================================================== */
+
+.flow-header-title {
+    color: #8b5cf6;
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+}
+
+.stepper-overview-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.stepper-overview-line::before {
+    content: '';
+    position: absolute;
+    top: 25px;
+    left: 5%;
+    width: 90%;
+    height: 2px;
+    border-top: 2px dashed #d8c7ff;
+    z-index: 1;
+}
+
+.step-circle-block {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 16%;
+}
+
+.step-circle-block .num-node {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #f5efff;
+    color: #8b5cf6;
+    font-weight: 600;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #e8ddff;
+    box-shadow: inset 0 2px 5px rgba(139,92,246,0.04);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.step-circle-block.finished .num-node {
+    background: #eadeff;
+    border-color: #b19eff;
+}
+
+.step-circle-block.current-active .num-node {
+    background: #8b5cf6;
+    color: white;
+    border-color: #8b5cf6;
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.35);
+}
+
+.node-caption {
+    margin-top: 12px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #6f6f6f;
+    text-align: center;
+}
+
+.overview-loading-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 10px 30px rgba(149,126,255,0.05);
+}
+
+.build-profile-msg {
+    font-size: 16px;
+    font-weight: 600;
+    color: #4b5563;
+    transition: color 0.3s ease;
+}
+
+/* ====================================================
+   PREMIUM BOTANICAL HEART VECTOR GRAPHICS FILTERING
+   ==================================================== */
+
+.vector-heart-holder {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.premium-vector-heart {
+    width: 140px; /* Scaled perfectly according to screenshot dimensions */
+    height: auto;
+    filter: drop-shadow(0 10px 20px rgba(139, 92, 246, 0.22));
+    animation: floatingHeartSway 2.5s ease-in-out infinite alternate;
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+/* ====================================================
+   BUBBLES LAYER OVERLAY CORRECTION (BROUGHT TO FRONT)
+   ==================================================== */
+.floating-bubbles-premium {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    /* CRITICAL FIXES: Brought to top layer like profile.css but allowing clicks through safely */
+    z-index: 99999 !important; 
+    pointer-events: none !important; /* This guarantees buttons/cards remain clickable underneath */
+}
+
+/* ====================================================
+   FIXED BUBBLE COLOR TRANSPARENCY ENGINE
+   ==================================================== */
+.floating-bubbles-premium .glass-bubble {
+    position: absolute;
+    border-radius: 50%;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    bottom: -200px;
+    animation: premiumFloatUp linear infinite;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    /* Soft outside shadow without forcing solid inside white color blocks */
+    box-shadow: 0 15px 35px rgba(139, 92, 246, 0.12); 
+    pointer-events: none !important;
+}
+
+@keyframes premiumFloatUp {
+    0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+    5% { opacity: 1; }
+    50% { transform: translateY(-60vh) translateX(35px) rotate(180deg); opacity: 1; }
+    75% { transform: translateY(-90vh) translateX(-15px) rotate(270deg); opacity: 1; }
+    100% { transform: translateY(-135vh) translateX(5px) rotate(360deg); opacity: 0; }
+}
+
+
+/* Base structural path transitions rules */
+.premium-vector-heart .heart-shield-left,
+.premium-vector-heart .heart-shield-right {
+    transition: fill 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.premium-vector-heart .right-botanical-tree {
+    transition: fill 0.6s ease;
+}
+
+@keyframes floatingHeartSway {
+    0% { transform: translateY(0) scale(1) rotate(0deg); }
+    100% { transform: translateY(-8px) scale(1.02) rotate(1deg); }
+}
+
+/* ====================================================
+   100% PROGRESS TRIGGER STATE: PINK GLOW TRANSFORMATION
+   ==================================================== */
+.premium-vector-heart.complete-heart {
+    animation: pulseFinalImpact 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1;
+    filter: drop-shadow(0 12px 25px rgba(236, 72, 153, 0.45));
+}
+
+.premium-vector-heart.complete-heart .heart-shield-left {
+    fill: linear-gradient(135deg, #ec4899, #f472b6) !important;
+    /* CSS standard color fallback overrides for SVG path tags fill vectors */
+    fill: #ec4899 !important; 
+}
+
+.premium-vector-heart.complete-heart .heart-shield-right {
+    fill: #f472b6 !important;
+}
+
+.premium-vector-heart.complete-heart .right-botanical-tree {
+    fill: #9d174d !important; /* Deep majestic crimson pink contrast tree stems */
+}
+
+@keyframes pulseFinalImpact {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.18); }
+    100% { transform: scale(1); }
+}
+.analysis-complete-card {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 12px 35px rgba(149,126,255,0.08);
+    opacity: 0;
+    transform: translateY(25px);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+}
+
+.analysis-complete-card.show-success {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* ====================================================
+   VIEW DASHBOARD BUTTON (RESTORED PURPLE LAVENDER)
+   ==================================================== */
+.btn-view-dashboard {
+    background: linear-gradient(135deg, #8b5cf6, #a78bfa) !important; /* Premium Purple-Lavender Gradient */
+    border: none !important;
+    color: #ffffff !important; /* High contrast sharp white text */
+    padding: 12px 50px !important; /* Perfect breadth stretch matching the layout */
+    border-radius: 14px !important; /* Clean smooth rounded corners */
+    font-weight: 600 !important;
+    font-size: 15px !important;
+    letter-spacing: 0.3px;
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3) !important; /* Soft purple ambient glow */
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.btn-view-dashboard:hover {
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.45) !important; /* Deep glowing lift on hover */
+    transform: translateY(-2px) scale(1.02) !important;
+    background: linear-gradient(135deg, #7c4dff, #9066ff) !important; /* Vibrant micro-interaction shift */
+}
+
+/* ====================================================
+   POST-SUBMISSION RIGHT CORNER BOTANICAL LEAF BACKGROUND
+   ==================================================== */
+
+.post-submit-bg-leaves {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    width: 260px; /* Perfect sizing matching the screenshot frame proportions */
+    height: auto;
+    pointer-events: none; /* Avoids overlay click blocks on dashboard elements */
+    z-index: 1; /* Places behind text panels, but on top of base system background */
+    transform-origin: bottom right;
+    animation: postSubmitLeafSway 5s ease-in-out infinite alternate;
+}
+
+.post-submit-bg-leaves svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Premium micro-interaction soft swaying movement */
+@keyframes postSubmitLeafSway {
+    0% { transform: scale(1) rotate(0deg); opacity: 0.85; }
+    100% { transform: scale(1.03) rotate(2deg) translateY(-2px); opacity: 0.95; }
+}
+
+/* ====================================================
+   DOUBLE SCROLLBAR TERMINATOR ENGINE (FIXED GLOBAL OVERFLOW)
+   ==================================================== */
+
+html, body {
+    height: 100vh;
+    max-height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden !important; /* Forces outer screen to strictly lock scrollbars */
+    background: linear-gradient(135deg, #faf7ff, #f5efff, #fff7fb);
+}
+
+.format-viewport {
+    height: 100vh;
+    max-height: 100vh;
+    overflow: hidden !important; /* Prevents Bootstrap's outer fluid row from collapsing */
+}
+
+/* ==========================
+SIDEBAR
+========================== */
+.sidebar {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    height: 100vh;
+    border-right: 1px solid rgba(124, 92, 255, 0.08);
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+}
+
+.logo-section {
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 12;
+}
+
+.logo-section h5 {
+    color: #8b5cf6;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    font-size: 20px;
+}
+
+.nav-menu {
+    list-style: none;
+    padding-left: 0;
+    position: relative;
+    z-index: 12;
+    margin-bottom: 10px;
+}
+
+.nav-menu li {
+    padding: 10px 16px !important;
+    margin-bottom: 6px;
+    border-radius: 12px !important;
+    color: #6f6f6f;
+    cursor: pointer;
+    transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    font-size: 15px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+
+.nav-menu li:hover, .nav-menu li.active {
+    background: #efe8ff;
+    color: #8b5cf6;
+    transform: translateX(4px);
+}
+
+.logout-btn {
+    margin-top: auto;
+    margin-bottom: 15px;
+    width: 100%;
+    border: 1px solid rgba(255, 125, 125, 0.1);
+    background: rgba(255, 244, 244, 0.8);
+    color: #ff7d7d;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    position: relative;
+    z-index: 12;
+    transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+    background: #ff7d7d;
+    color: #ffffff;
+}
+
+.sidebar-leaves {
+    position: absolute;
+    bottom: -10px;
+    left: -10px;
+    width: 115%;
+    pointer-events: none;
+    z-index: 11;
+    transform-origin: bottom left;
+    animation: leafSwayMotion 6s ease-in-out infinite alternate;
+}
+
+.sidebar-leaves svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+@keyframes leafSwayMotion {
+    0% { transform: scale(1) rotate(0deg); }
+    100% { transform: scale(1.02) rotate(2deg) translateY(-1px); }
+}
+
+/* MAIN PANEL AREA: Only this block will have the single, proper scrollbar */
+.raw-panel {
+    height: 100vh !important;
+    max-height: 100vh !important;
+    overflow-y: auto !important; /* SMART SCROLLER: Only inside scrollbar will be active */
+    overflow-x: hidden !important; /* Strict horizontal lock to stop lateral shifting */
+}
+
+.profile-wrapper {
+    min-height: 100%;
+    padding: 25px 40px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+    z-index: 2;
+    box-sizing: border-box;
+}
+
+/* ====================================================
+   RESPONSIVE DESIGN ADAPTATIONS
+   ==================================================== */
+@media(max-width:1200px){
+    .cards-grid { grid-template-columns: repeat(2, 1fr); }
+    .overview-wrapper, .bottom-grid { grid-template-columns: 1fr; }
+}
+@media(max-width:900px){
+    .dashboard-container { flex-direction: column; }
+    .sidebar { width: 100%; height: auto; position: relative; }
+    .main-content { padding: 20px; }
+    .twin-grid { grid-template-columns: 1fr; }
+}
+@media(max-width:600px){
+    .cards-grid { grid-template-columns: 1fr; }
+    .top-header { flex-direction: column; gap: 20px; align-items: flex-start; }
+    .profile-section { flex-wrap: wrap; }
+    .graph-header { flex-direction: column; gap: 10px; }
+}
+
+/* --- Desktop layout ko safe rakh ke sirf responsive spacing --- */
+@media (max-width: 1200px) {
+    body {
+        flex-direction: column !important; /* Sidebar upar, content niche */
+    }
+    .sidebar, aside {
+        width: 100% !important;
+        height: auto !important;
+        position: relative !important;
+        padding: 20px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        background-image: none !important; /* Mobile pe background leaves overlap rokne ke liye */
+    }
+    .sidebar nav {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 10px !important;
+        margin-bottom: 20px;
+    }
+    .sidebar nav a {
+        padding: 10px 14px !important;
+        font-size: 14px !important;
+    }
+    .sidebar-brand {
+        margin-bottom: 20px !important;
+        padding-left: 0 !important;
+    }
+    .sidebar-footer {
+        width: 100% !important;
+        max-width: 300px;
+    }
+    .content-wrapper, .content, main {
+        width: 100% !important;
+        padding: 20px !important;
+    }
+    /* Grids stack properly */
+    .grid-container, .charts-grid, .info-grid, .dashboard-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+}
