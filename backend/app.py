@@ -10,31 +10,30 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import webbrowser
 
 # ====================================================
-# 🔥 FIX: PATH VARIABLES DEFINE KIYE
+# 🔥 FIXED DETAILED PATH ENGINE (Hugging Face Fixed)
 # ====================================================
-BASE_DIR = os.path.dirname(os.path.abspath(__file__)) # This is /app/backend
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))  # /app/backend
 backend_dir = BASE_DIR
-project_root = os.path.dirname(BASE_DIR)              # This is /app (main directory)
+project_root = os.path.dirname(BASE_DIR)              # /app
 
+# Folders ke sahi absolute paths
+PAGES_DIR = os.path.join(project_root, "pages")        # /app/pages
+STATIC_DIR = project_root                              # /app (Main folder jahan css/js hain)
 MODEL_PATH = os.path.join(backend_dir, 'mindmate_model.pkl') 
 
-# EXPLICIT STATIC ROUTING
+# Flask ko direct aur clear instructions do
 app = Flask(__name__, 
-            template_folder=os.path.join(project_root, "pages"),
-            static_url_path='',  
-            static_folder=project_root) 
+            template_folder=PAGES_DIR,
+            static_folder=STATIC_DIR,
+            static_url_path="")
 
 app.secret_key = "mindmate_premium_ultra_secret_key_encryption"
 
-# Dynamic fallback loader
-possible_template_dirs = [
-    os.path.join(project_root, "pages"),
-    project_root
-]
+# Jinja Fallback Loader - Yeh pages dhoondhne mein kabhi fail nahi hoga
+possible_template_dirs = [PAGES_DIR, project_root]
 app.jinja_env.loader = ChoiceLoader([
     FileSystemLoader(d) for d in possible_template_dirs if os.path.exists(d)
 ])
-
 # ====================================================
 # PORTABLE SQLITE ENGINE (WITH HISTORY TRACKING TABLE)
 # ====================================================
@@ -104,7 +103,8 @@ def get_level(score):
 # HTML PAGES ROUTING SYSTEM (WITH JINJA DATA & GRAPH RENDERING)
 # ====================================================
 @app.route("/")
-def home():
+@app.route("/welcome")
+def welcome():
     return render_template("welcome.html")
 
 @app.route("/dashboard")
@@ -180,6 +180,18 @@ def dashboard():
         ai_headline=ai_headline,
         ai_suggestion=ai_suggestion
     )
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
+
+@app.route("/feature")
+def feature():
+    return render_template("feature.html")
 
 @app.route("/emergency")
 def emergency():
