@@ -37,8 +37,7 @@ app.jinja_env.loader = ChoiceLoader([
 # ====================================================
 # PORTABLE SQLITE ENGINE (WITH HISTORY TRACKING TABLE)
 # ====================================================
-db_path = os.path.join(backend_dir, "mindmate.db")
-
+db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "mindmate.db")
 def init_sqlite_db():
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
