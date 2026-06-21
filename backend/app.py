@@ -375,6 +375,6 @@ def update_profile_pic():
 # ====================================================
 # SERVER BOOT REGISTER
 # ====================================================
-if __name__ == "__main__":
-    webbrowser.open("http://127.0.0.1:5000")
-    app.run(debug=True)
+if __name__ == '__main__':
+    # Hugging Face default port 7860 use karta hai
+    app.run(host='0.0.0.0', port=7860, debug=False)

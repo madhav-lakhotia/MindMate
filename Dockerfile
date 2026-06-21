@@ -17,5 +17,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 ENV PORT=7860
 EXPOSE 7860
 
-# Gunicorn se backend ke andar ki app.py run karo
-CMD ["gunicorn", "--bind", "0.0.0.0:7860", "--chdir", "backend", "app:app"]
+CMD ["python", "backend/app.py"]
