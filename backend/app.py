@@ -9,30 +9,22 @@ from jinja2 import ChoiceLoader, FileSystemLoader
 from werkzeug.security import generate_password_hash, check_password_hash
 import webbrowser
 
-import os
-import pickle
+# ====================================================
+# 🔥 FIX: PATH VARIABLES DEFINE KIYE
+# ====================================================
+BASE_DIR = os.path.dirname(os.path.abspath(__file__)) # This is /app/backend
+backend_dir = BASE_DIR
+project_root = os.path.dirname(BASE_DIR)              # This is /app (main directory)
 
-# 🔥 Pkl ka sahi absolute path dhoondhne ke liye yeh jugaad lagao:
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-# Agar model backend folder ke andar hi hai:
-MODEL_PATH = os.path.join(BASE_DIR, 'mindmate_model.pkl') # <-- Apne pkl file ka sahi naam likhna yahan
-
-try:
-    with open(MODEL_PATH, 'rb') as f:
-        model = pickle.load(f)
-except Exception as e:
-    print(f"[AI MODEL ERROR]: Could not load pkl file. Reason: {e}")
-
+MODEL_PATH = os.path.join(backend_dir, 'mindmate_model.pkl') 
 
 # EXPLICIT STATIC ROUTING
-# 🔥 FIX: Explicit Static URL Mapping laga kar CSS wapas lao
 app = Flask(__name__, 
             template_folder=os.path.join(project_root, "pages"),
-            static_url_path='',  # 👈 Yeh lagane se /css/ aur /js/ direct access ho jayenge
+            static_url_path='',  
             static_folder=project_root) 
 
 app.secret_key = "mindmate_premium_ultra_secret_key_encryption"
-
 
 # Dynamic fallback loader
 possible_template_dirs = [
@@ -88,14 +80,20 @@ init_sqlite_db()
 # ====================================================
 # MACHINE LEARNING MODEL LOADING CORE
 # ====================================================
-model_path = os.path.join(backend_dir, "mindmate_model.pkl")
+model = None
 try:
-    model = joblib.load(model_path)
+    model = joblib.load(MODEL_PATH)
     print("\n[AI MODEL]: MindMate Brain Model Loaded Successfully! (Status: OK)")
 except Exception as e:
-    # Safely stringify the error to prevent crash on windows charmap terminal
-    print("[AI MODEL ERROR]: Could not load pkl file.")
-    model = None
+    print(f"[AI MODEL ERROR]: Could not load pkl file via joblib. Reason: {e}")
+    # Fallback to pickle if joblib fails
+    try:
+        with open(MODEL_PATH, 'rb') as f:
+            model = pickle.load(f)
+        print("\n[AI MODEL]: MindMate Brain Model Loaded Successfully via Pickle! (Status: OK)")
+    except Exception as e2:
+        print(f"[AI MODEL ERROR]: Could not load pkl file via pickle either. Reason: {e2}")
+        model = None
 
 def get_level(score):
     if score < 4: return "Low"
@@ -257,7 +255,7 @@ def login():
         conn.close()
 
         if user and check_password_hash(user[5], password):
-            session['logged_user'] = username # Account tracking locked
+            session['logged_user'] = username 
             return jsonify({"success": True, "username": username})
         else:
             return jsonify({"success": False, "message": "Invalid Username or Password"})
@@ -278,32 +276,30 @@ def submit_assessment():
 
         username = session.get('logged_user', 'GuestUser') 
         
-        # 1. Packing data parameters (Without student_id mapping to match model fit)
         raw_features = [
-            int(data.get("age", 22)),                          # 1. age
-            int(data.get("gender", 1)),                        # 2. gender
-            int(data.get("course", 1)),                        # 3. course
-            int(data.get("year", 3)),                          # 4. year
-            float(data.get("study_hours", 6.0)),               # 5. daily_study_hours
-            float(data.get("sleep_hours", 7.0)),               # 6. daily_sleep_hours
-            float(data.get("screen_time", 4.0)),               # 7. screen_time_hours
-            float(data.get("physical_activity", 1.0)),         # 8. physical_activity_hours
-            float(data.get("attendance", 75.0)),               # 9. attendance_percentage
-            float(data.get("cgpa", 7.5)),                      # 10. cgpa
-            float(data.get("academic_pressure", 5.0)),         # 11. academic_pressure_score
-            float(data.get("financial_stress", 4.0)),          # 12. financial_stress_score
-            float(data.get("social_support", 6.0)),            # 13. social_support_score
-            float(data.get("family_support", 7.0)),            # 14. family_support_score
-            float(data.get("peer_relationship", 6.0)),         # 15. peer_relationship_score
-            float(data.get("career_uncertainty", 5.0)),        # 16. career_uncertainty_score
-            float(data.get("sleep_quality", 6.0)),             # 17. sleep_quality
-            float(data.get("internet_quality", 4.0)),          # 18. internet_quality
-            float(data.get("caffeine_intake", 2.0)),           # 19. caffeine_intake_per_day
-            float(data.get("part_time_job_hours", 0.0)),       # 20. part_time_job_hours
-            float(data.get("extracurricular", 3.0))            # 21. extracurricular_hours
+            int(data.get("age", 22)),                           # 1. age
+            int(data.get("gender", 1)),                         # 2. gender
+            int(data.get("course", 1)),                         # 3. course
+            int(data.get("year", 3)),                           # 4. year
+            float(data.get("study_hours", 6.0)),                # 5. daily_study_hours
+            float(data.get("sleep_hours", 7.0)),                # 6. daily_sleep_hours
+            float(data.get("screen_time", 4.0)),                # 7. screen_time_hours
+            float(data.get("physical_activity", 1.0)),          # 8. physical_activity_hours
+            float(data.get("attendance", 75.0)),                # 9. attendance_percentage
+            float(data.get("cgpa", 7.5)),                       # 10. cgpa
+            float(data.get("academic_pressure", 5.0)),          # 11. academic_pressure_score
+            float(data.get("financial_stress", 4.0)),           # 12. financial_stress_score
+            float(data.get("social_support", 6.0)),             # 13. social_support_score
+            float(data.get("family_support", 7.0)),             # 14. family_support_score
+            float(data.get("peer_relationship", 6.0)),          # 15. peer_relationship_score
+            float(data.get("career_uncertainty", 5.0)),         # 16. career_uncertainty_score
+            float(data.get("sleep_quality", 6.0)),              # 17. sleep_quality
+            float(data.get("internet_quality", 4.0)),           # 18. internet_quality
+            float(data.get("caffeine_intake", 2.0)),            # 19. caffeine_intake_per_day
+            float(data.get("part_time_job_hours", 0.0)),        # 20. part_time_job_hours
+            float(data.get("extracurricular", 3.0))             # 21. extracurricular_hours
         ]
 
-        # Exact 21 training feature headers (student_id dropped permanently)
         feature_names = [
             'age', 'gender', 'course', 'year', 'daily_study_hours',
             'daily_sleep_hours', 'screen_time_hours', 'physical_activity_hours',
@@ -316,11 +312,9 @@ def submit_assessment():
         
         input_data = pd.DataFrame([raw_features], columns=feature_names)
         
-        # 2. Fire model prediction matrix
         prediction = model.predict(input_data)
         scores = prediction[0]
 
-        # Target positional parameters evaluation
         s_score = round(float(scores[0]), 2)
         anx_score = round(float(scores[1]), 2)
         dep_score = round(float(scores[2]), 2)
@@ -328,7 +322,6 @@ def submit_assessment():
         sleep_score = round(float(scores[4]), 2)
         w_score = round(float(scores[5]), 2)
         
-        # 3. Save parameters directly to current runtime Flask session keys
         session['stress_score'] = s_score
         session['stress_level'] = get_level(scores[0])
         session['anxiety_score'] = anx_score
@@ -342,7 +335,6 @@ def submit_assessment():
         session['wellness_score'] = w_score
         session['wellness_level'] = get_level(scores[5])
 
-        # 4. Write execution history directly to local SQLite tracking tables
         conn = sqlite3.connect(db_path)
         cursor = conn.cursor()
         cursor.execute("""
@@ -360,12 +352,11 @@ def submit_assessment():
         print(f"\n[CRITICAL PIPELINE EXCEPTION ERROR]: {str(e)}")
         return jsonify({"success": False, "message": str(e)}), 500
     
-    
 @app.route("/predict", methods=["POST"])
 def legacy_predict():
     return submit_assessment()
 
-    # ====================================================
+# ====================================================
 # 🔥 DYNAMIC PROFILE PICTURE UPDATE ENGINE
 # ====================================================
 @app.route("/api/update-profile-pic", methods=["POST"])
@@ -375,16 +366,10 @@ def update_profile_pic():
         if not data or "image_url" not in data:
             return jsonify({"success": False, "message": "No image source found"}), 400
             
-        # User ki select ki hui image URL ko direct session me global lock karo
         session['profile_pic'] = data["image_url"]
-        
         return jsonify({"success": True, "message": "Profile picture synchronized globally!"}), 200
     except Exception as e:
         return jsonify({"success": False, "message": str(e)}), 500
 
-# ====================================================
-# SERVER BOOT REGISTER
-# ====================================================
 if __name__ == '__main__':
-    # Hugging Face default port 7860 use karta hai
     app.run(host='0.0.0.0', port=7860, debug=False)
