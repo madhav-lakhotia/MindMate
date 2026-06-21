@@ -4,15 +4,25 @@ import joblib
 import pandas as pd
 import numpy as np
 import os
+import pickel
 from jinja2 import ChoiceLoader, FileSystemLoader
 from werkzeug.security import generate_password_hash, check_password_hash
 import webbrowser
 
-# ====================================================
-# PERFECT PATH ALIGNMENT ENGINE
-# ====================================================
-backend_dir = os.path.dirname(os.path.abspath(__file__)) # mindmate\backend
-project_root = os.path.dirname(backend_dir)              # mindmate
+import os
+import pickle
+
+# 🔥 Pkl ka sahi absolute path dhoondhne ke liye yeh jugaad lagao:
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+# Agar model backend folder ke andar hi hai:
+MODEL_PATH = os.path.join(BASE_DIR, 'mindmate_model.pkl') # <-- Apne pkl file ka sahi naam likhna yahan
+
+try:
+    with open(MODEL_PATH, 'rb') as f:
+        model = pickle.load(f)
+except Exception as e:
+    print(f"[AI MODEL ERROR]: Could not load pkl file. Reason: {e}")
+
 
 # EXPLICIT STATIC ROUTING
 # 🔥 FIX: Explicit Static URL Mapping laga kar CSS wapas lao
