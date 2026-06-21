@@ -78,19 +78,21 @@ init_sqlite_db()
 # ====================================================
 # MACHINE LEARNING MODEL LOADING CORE
 # ====================================================
+# ====================================================
+# MACHINE LEARNING MODEL LOADING CORE (FIXED)
+# ====================================================
 model = None
+# Hum direct absolute path use karenge jo humne top par banaya hai
 try:
     model = joblib.load(MODEL_PATH)
-    print("\n[AI MODEL]: MindMate Brain Model Loaded Successfully! (Status: OK)")
+    print("\n[AI MODEL]: MindMate Brain Model Loaded Successfully via Joblib! (Status: OK)")
 except Exception as e:
-    print(f"[AI MODEL ERROR]: Could not load pkl file via joblib. Reason: {e}")
-    # Fallback to pickle if joblib fails
     try:
         with open(MODEL_PATH, 'rb') as f:
             model = pickle.load(f)
         print("\n[AI MODEL]: MindMate Brain Model Loaded Successfully via Pickle! (Status: OK)")
     except Exception as e2:
-        print(f"[AI MODEL ERROR]: Could not load pkl file via pickle either. Reason: {e2}")
+        print(f"[CRITICAL AI ERROR]: Model could not be loaded at all! Reason: {e2}")
         model = None
 
 def get_level(score):
