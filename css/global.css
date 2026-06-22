@@ -135,3 +135,48 @@ body {
         padding: 15px !important;
     }
 }
+
+
+/* ==========================================
+   🔥 MOBILE RESPONSIVE SIDEBAR (FOR MOBILE)
+   ========================================== */
+@media (max-width: 768px) {
+    /* Sidebar ko mobile par chhupa rahe hain */
+    .sidebar {
+        position: fixed;
+        left: -250px; 
+        top: 0;
+        height: 100%;
+        width: 250px;
+        z-index: 999;
+        background-color: #111827; /* Jo bhi teri sidebar ka rang hai, wo yahan rakhna */
+        transition: all 0.3s ease;
+    }
+
+    /* Jab toggle active hoga toh sidebar slide karke bahar aayega */
+    .sidebar.active {
+        left: 0;
+    }
+
+    /* Mobile Toggle Button (3 Lines ☰) */
+    .mobile-nav-toggle {
+        display: block !important;
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        background: #ec4899; /* Pink color theme */
+        color: white;
+        border: none;
+        padding: 8px 14px;
+        font-size: 22px;
+        cursor: pointer;
+        border-radius: 6px;
+        z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+}
+
+/* Laptop/Desktop par 3 lines waala button nahi dikhega */
+.mobile-nav-toggle {
+    display: none;
+}
