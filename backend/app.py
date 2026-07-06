@@ -215,9 +215,7 @@ def trigger_analysis():
 
 @app.route("/profile")
 def profile():
-    username = session.get('logged_user') or session.get('username')
-    if not username:
-        return redirect('/login')
+    username = session.get('logged_user') or session.get('username') or 'Guest'
 
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
@@ -235,16 +233,17 @@ def profile():
             pass  # Column agar pehle se hai toh koi dikkat nahi
 
     # Ab jab columns exist karte hain, tab database se safe fetch karo
+    # Ab jab columns exist karte hain, tab database se safe fetch karo (Added avatar here)
     cursor.execute("""
         SELECT fullname, email, phone, age, gender, height, weight, location, 
-               branch, year, semester, sleep_goal, water_goal, steps_goal, screen_goal, stress_goal 
+               branch, year, semester, sleep_goal, water_goal, steps_goal, screen_goal, stress_goal, avatar 
         FROM users WHERE username = ?
     """, (username,))
     
     row = cursor.fetchone()
     conn.close()
 
-    # Data dictionary framework validation
+    # Data dictionary framework validation (Added avatar here)
     if row:
         profile_details = {
             "username": username,
@@ -263,10 +262,11 @@ def profile():
             "water_goal": row[12] if row[12] else "",
             "steps_goal": row[13] if row[13] else "",
             "screen_goal": row[14] if row[14] else "",
-            "stress_goal": row[15] if row[15] else ""
+            "stress_goal": row[15] if row[15] else "",
+            "avatar": row[16] if row[16] else ""  # <-- Yeh line missing thi!
         }
     else:
-        profile_details = {"username": username}
+        profile_details = {"username": username, "avatar": ""}
 
     return render_template("profile.html", user=profile_details)
 
