@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindMate</title>
+
+    <link rel="stylesheet"
+      href="/css/welcome.css">
+
+      <link rel="stylesheet"
+      href="/css/global.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Background Blobs -->
+    <div class="blob blob1"></div>
+    <div class="blob blob2"></div>
+    <div class="blob blob3"></div>
+
+    <!-- Navbar -->
+
+    <nav>
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🧠
+            </div>
+
+            <div class="logo-text">
+
+                <h2>
+                    MindMate 
+                </h2>
+
+                <p>
+                    Predict. Prevent. Protect.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="nav-links">
+
+           <div class="nav-links">
+            <a href = "/welcome">Home</a>
+            
+            <a href="/about">About Us</a>
+
+            <a href="/feature">Features</a>
+
+            <a href="/contact">Contact</a>
+
+</div>
+
+        </div>
+
+        <div class="auth-buttons">
+
+    <button class="login-btn"
+            onclick="openLogin()">
+        Login
+    </button>
+
+    <button class="register-btn"
+            onclick="openRegister()">
+        Register
+    </button>
+
+</div>
+
+    </nav>
+
+    <!-- Hero Section -->
+
+    <section class="hero">
+
+        <!-- Left Side -->
+
+        <div class="hero-left">
+
+            <div class="hero-badge">
+
+                🎓 AI-Powered Student Wellness Platform
+
+            </div>
+
+            <h1>
+
+                Your Wellness,
+                <span>
+                Our Priority
+                </span>
+            </h1>
+
+            <p>
+
+                MindMate helps students monitor stress,
+                predict burnout risk, improve emotional well-being,
+                and build healthier study-life habits through AI-powered insights.
+
+            </p>
+
+            <div class="hero-buttons">
+
+                <button
+                class="primary-btn"
+                onclick="openLogin()">
+
+                <i class="fa-solid fa-rocket"></i>
+                Get Started
+
+            </button>
+
+            <button class="secondary-btn">
+
+                <i class="fa-solid fa-circle-play"></i>
+                Watch Demo
+
+            </button>
+
+            </div>
+
+            <div class="privacy-text">
+
+                🔒 Student data remains private and secure
+
+            </div>
+
+        </div>
+
+        <!-- Right Side -->
+
+        <div class="hero-right">
+
+            <div class="hero-circle">
+
+                <img
+                    src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png"
+                    alt="wellness illustration"
+                >
+
+            </div>
+
+            <div class="floating-card score-card">
+
+                <h4>Wellness Score</h4>
+
+                <h2>7.8/10</h2>
+
+                <span>Good</span>
+
+            </div>
+
+            <div class="floating-card sleep-card">
+
+                <h4>Sleep Quality</h4>
+
+                <h2>7.2/10</h2>
+
+                <span>Good</span>
+
+            </div>
+
+            <div class="floating-card stress-card">
+
+                <h4>Stress Level</h4>
+
+                <h2>Low</h2>
+
+                <span>Improving</span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Features Section -->
+
+    <section class="features-section">
+
+        <div class="feature-card twin">
+
+    <div class="feature-icon">
+        🧠
+    </div>
+
+    <h2>AI Wellness Twin</h2>
+
+    <div class="card-content">
+        <p>
+            Visualize how better sleep, reduced stress, and healthier habits can improve your future well-being.
+        </p>
+    </div>
+
+    </div>
+
+            <div class="feature-card dashboard">
+
+        <div class="feature-icon">
+            📈
+        </div>
+
+        <h2>Smart Dashboard</h2>
+
+        <div class="card-content">
+            <p>
+                View wellness score, anxiety trends and health insights.
+            </p>
+        </div>
+
+    </div>
+
+            <div class="feature-card recovery">
+
+        <div class="feature-icon">
+            🌿
+        </div>
+
+        <h2>Recovery Board</h2>
+
+        <div class="card-content">
+            <p>
+                Personalized recovery plans and daily wellness tasks.
+            </p>
+        </div>
+
+    </div>
+
+            <div class="feature-card emergency">
+
+        <div class="feature-icon">
+            🛟
+        </div>
+
+        <h2>Emergency Support</h2>
+
+        <div class="card-content">
+            <p>
+                Instant access to breathing exercises and support.
+            </p>
+        </div>
+
+    </div>
+
+    </section>
+
+    <!-- Footer -->
+
+    <footer>
+
+        <h3>
+            MindMate
+        </h3>
+
+        <p>
+            Predict. Prevent. Protect.
+        </p>
+
+    </footer>
+
+    <!-- LOGIN / REGISTER MODAL -->
+
+<!-- LOGIN / REGISTER MODAL -->
+
+<div class="modal-overlay" id="modal">
+
+    <div class="auth-modal">
+
+        <span class="close-btn"
+              onclick="closeModal()">
+            ✕
+        </span>
+
+        <!-- Tabs -->
+
+        <div class="auth-tabs">
+
+            <button id="loginTab"
+                    class="active-tab"
+                    onclick="showLogin()">
+                Login
+            </button>
+
+            <button id="registerTab"
+                    onclick="showRegister()">
+                Register
+            </button>
+
+        </div>
+
+        <!-- LOGIN FORM -->
+        <div id="loginForm">
+                    <input
+                id="loginUsername"
+                type="text"
+                placeholder="Username"
+                required
+            >
+
+            <input
+                id="loginPassword"
+                type="password"
+                placeholder="Password"
+                required
+            >
+
+            <button
+                class="auth-submit"
+                onclick="loginUser()">
+                Login
+            </button>
+        </div>
+        <!-- REGISTER FORM -->
+
+        <div id="registerForm"
+             style="display:none;">
+
+            <h2>Create Account ✨</h2>
+
+              <input
+                    id="fullname"
+                    type="text"
+                    placeholder="Full Name"
+                    required
+                >
+
+            <input
+                id="registerUsername"
+                type="text"
+                placeholder="Username"
+                required
+            >
+
+            <input
+                id="registerEmail"
+                type="email"
+                placeholder="Email Address"
+                required
+            >
+
+            <input
+                id="registerPhone"  
+                type="tel"
+                placeholder="Contact Number"
+                required
+            >
+
+            <input
+                id="registerPassword"
+                type="password"
+                placeholder="Password"
+                required
+            >
+
+                 <button
+                class="auth-submit"
+                onclick="registerUser()">
+                    Register
+                </button>
+
+            <p class="terms-text">
+                By registering, you agree to our
+                Terms & Privacy Policy
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+   <script>
+
+const modal =
+document.getElementById("modal");
+
+function openLogin(){
+
+    modal.style.display = "flex";
+
+    showLogin();
+}
+
+function openRegister(){
+
+    modal.style.display = "flex";
+
+    showRegister();
+}
+
+function closeModal(){
+
+    modal.style.display = "none";
+}
+
+function showLogin(){
+
+    document.getElementById(
+    "loginForm").style.display =
+    "block";
+
+    document.getElementById(
+    "registerForm").style.display =
+    "none";
+
+    document.getElementById(
+    "loginTab").classList.add(
+    "active-tab");
+
+    document.getElementById(
+    "registerTab").classList.remove(
+    "active-tab");
+}
+
+function showRegister(){
+
+    document.getElementById(
+    "registerForm").style.display =
+    "block";
+
+    document.getElementById(
+    "loginForm").style.display =
+    "none";
+
+    document.getElementById(
+    "registerTab").classList.add(
+    "active-tab");
+
+    document.getElementById(
+    "loginTab").classList.remove(
+    "active-tab");
+}
+
+window.onclick = function(e){
+
+    if(e.target === modal){
+
+        closeModal();
+    }
+}
+
+/* =========================
+   REGISTER USER
+========================= */
+
+async function registerUser(){
+
+    const fullname =
+    document.getElementById("fullname").value;
+
+    const username =
+    document.getElementById("registerUsername").value;
+
+    const email =
+    document.getElementById("registerEmail").value;
+
+    const phone =
+    document.getElementById("registerPhone").value;
+
+    const password =
+    document.getElementById("registerPassword").value;
+
+    const response =
+    await fetch("/register",{
+
+        method:"POST",
+
+        headers:{
+            "Content-Type":
+            "application/json"
+        },
+
+        body:JSON.stringify({
+
+            fullname,
+            username,
+            email,
+            phone,
+            password
+
+        })
+
+    });
+
+    const data =
+    await response.json();
+
+    if(data.success){
+
+        alert(
+            "Registration Successful"
+        );
+
+        showLogin();
+
+    }
+    else{
+
+        alert(
+            data.message
+        );
+    }
+}
+/* =========================
+   LOGIN USER
+========================= */
+
+async function loginUser(){
+
+    const username =
+    document.getElementById(
+    "loginUsername"
+    ).value;
+
+    const password =
+    document.getElementById(
+    "loginPassword"
+    ).value;
+
+    const response =
+    await fetch("/login",{
+
+        method:"POST",
+
+        headers:{
+            "Content-Type":
+            "application/json"
+        },
+
+        body:JSON.stringify({
+
+            username,
+            password
+
+        })
+
+    });
+
+    const data =
+    await response.json();
+
+    if(data.success){
+
+        localStorage.setItem(
+            "loggedInUser",
+            data.username
+        );
+
+        window.location.href =
+        "/dashboard";
+    }
+
+    else{
+
+        alert(
+            "Invalid Username or Password"
+        );
+    }
+}
+</script>
+
+</body>
+</html>

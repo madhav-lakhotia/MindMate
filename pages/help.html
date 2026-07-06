@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MindMate Support</title>
+      <link rel="stylesheet"
+      href="/css/global.css">
+
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:#f6f3fb;
+}
+
+/* Overlay */
+.overlay{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.2);
+    display:none;
+}
+
+/* Popup */
+.chat-popup{
+    position:fixed;
+    right:30px;
+    bottom:30px;
+    width:350px;
+    height:500px;
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+    display:none;
+    flex-direction:column;
+}
+
+/* Header */
+.chat-header{
+    background:linear-gradient(135deg,#f38ac8,#8b6cff);
+    color:white;
+    padding:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.chat-header h3{
+    font-size:18px;
+}
+
+.close-btn{
+    background:none;
+    border:none;
+    color:white;
+    font-size:28px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s ease;
+}
+
+.close-btn:hover{
+    transform:scale(1.15);
+    opacity:0.85;
+}
+
+/* Body */
+.chat-body{
+    flex:1;
+    padding:15px;
+    overflow-y:auto;
+}
+
+.bot-message{
+    background:#f3eefc;
+    padding:12px;
+    border-radius:12px;
+    margin-bottom:15px;
+    color:#444;
+}
+
+.option-btn{
+    width:100%;
+    padding:12px;
+    margin-bottom:10px;
+    border:none;
+    border-radius:12px;
+    background:#f7f4ff;
+    cursor:pointer;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.option-btn:hover{
+    background:#e8ddff;
+}
+
+.solution-box{
+    background:#eefaf1;
+    padding:12px;
+    border-radius:12px;
+    margin-top:15px;
+    color:#333;
+}
+
+/* Demo Help Button */
+.help-btn{
+    margin:50px;
+    padding:12px 25px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg,#f38ac8,#8b6cff);
+    color:white;
+    cursor:pointer;
+    font-size:16px;
+}
+</style>
+</head>
+<body>
+
+<button class="help-btn" onclick="openChat()">
+    Help
+</button>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="chat-popup" id="chatPopup">
+
+    <div class="chat-header">
+    <h3>🧠 MindMate Support</h3>
+
+    <button class="close-btn" onclick="closeChat()">
+        &times;
+    </button>
+</div>
+
+    <div class="chat-body" id="chatBody">
+
+        <div class="bot-message">
+            Hello! 👋 <br><br>
+            Welcome to MindMate Support.<br><br>
+            Which page are you facing an issue with?
+        </div>
+
+        <button class="option-btn" onclick="showPage('dashboard')">📊 Dashboard</button>
+
+        <button class="option-btn" onclick="showPage('assessment')">📝 Assessment</button>
+
+        <button class="option-btn" onclick="showPage('wellness')">🧠 Wellness Twin</button>
+
+        <button class="option-btn" onclick="showPage('prediction')">📈 Prediction</button>
+
+        <button class="option-btn" onclick="showPage('reports')">📄 Reports</button>
+
+    </div>
+
+</div>
+
+<script>
+
+function openChat(){
+    document.getElementById("chatPopup").style.display="flex";
+    document.getElementById("overlay").style.display="block";
+}
+
+function closeChat(){
+
+    document.getElementById("chatPopup").style.display="none";
+    document.getElementById("overlay").style.display="none";
+
+    location.reload(); // Reset conversation
+}
+
+function showPage(page){
+
+    let body=document.getElementById("chatBody");
+
+    if(page==="wellness"){
+
+        body.innerHTML=`
+            <div class="bot-message">
+                Select your Wellness Twin issue
+            </div>
+
+            <button class="option-btn"
+             onclick="showSolution('Data Not Loading')">
+             Data Not Loading
+            </button>
+
+            <button class="option-btn"
+             onclick="showSolution('Score Not Updating')">
+             Score Not Updating
+            </button>
+
+            <button class="option-btn"
+             onclick="showSolution('Graphs Missing')">
+             Graphs Missing
+            </button>
+
+            <button class="option-btn"
+             onclick="showSolution('Metrics Help')">
+             Understanding Metrics
+            </button>
+
+            <button class="option-btn"
+             onclick="location.reload()">
+             🔙 Main Menu
+            </button>
+        `;
+    }
+
+    else{
+
+        body.innerHTML=`
+        <div class="bot-message">
+            Support options for ${page}
+            will be added here.
+        </div>
+
+        <button class="option-btn"
+         onclick="location.reload()">
+         🔙 Main Menu
+        </button>
+        `;
+    }
+}
+
+function showSolution(issue){
+
+    let solution="";
+
+    switch(issue){
+
+        case "Data Not Loading":
+            solution=`
+            Refresh the page.<br>
+            Wait a few seconds.<br>
+            Check internet connection.<br>
+            Login again if needed.
+            `;
+            break;
+
+        case "Score Not Updating":
+            solution=`
+            Complete assessment fully.<br>
+            Refresh Wellness Twin page.
+            `;
+            break;
+
+        case "Graphs Missing":
+            solution=`
+            Refresh dashboard.<br>
+            Allow page to load completely.
+            `;
+            break;
+
+        case "Metrics Help":
+            solution=`
+            Wellness metrics reflect stress,
+            anxiety and wellness indicators.
+            `;
+            break;
+    }
+
+    document.getElementById("chatBody").innerHTML=`
+        <div class="bot-message">
+            Issue: ${issue}
+        </div>
+
+        <div class="solution-box">
+            ${solution}
+        </div>
+
+        <br>
+
+        <button class="option-btn"
+         onclick="location.reload()">
+         🏠 Main Menu
+        </button>
+    `;
+}
+const supportData = {
+
+    dashboard: {
+        title: "📊 Dashboard",
+        issues: {
+            "Data Not Loading":
+                "Refresh the dashboard and wait a few seconds for data synchronization.",
+
+            "Charts Not Visible":
+                "Refresh the page and ensure your internet connection is stable.",
+
+            "Dashboard Slow":
+                "Close unused browser tabs and reload the dashboard.",
+
+            "Values Incorrect":
+                "Wait for assessment data to sync and refresh the page."
+        }
+    },
+
+    assessment: {
+        title: "📝 Assessment",
+        issues: {
+            "Questions Not Loading":
+                "Refresh the page and check your internet connection.",
+
+            "Cannot Submit":
+                "Ensure all required questions are answered before submitting.",
+
+            "Answers Not Saving":
+                "Avoid refreshing while completing the assessment.",
+
+            "Assessment Interrupted":
+                "Restart the assessment and complete it in one session."
+        }
+    },
+
+    wellness: {
+        title: "🧠 Wellness Twin",
+        issues: {
+            "Data Not Loading":
+                "Refresh the page and allow a few seconds for synchronization.",
+
+            "Score Not Updating":
+                "Complete your latest assessment and refresh the page.",
+
+            "Graph Not Visible":
+                "Refresh the dashboard and ensure scripts are loading properly.",
+
+            "Understanding Metrics":
+                "Your wellness metrics reflect stress, anxiety, sleep and overall wellness indicators."
+        }
+    },
+
+    prediction: {
+        title: "📈 Prediction Results",
+        issues: {
+            "Prediction Not Generated":
+                "Complete the assessment before generating predictions.",
+
+            "Prediction Slow":
+                "Please wait a few moments while the model processes your responses.",
+
+            "Blank Prediction Page":
+                "Refresh the page and try again.",
+
+            "Risk Level Missing":
+                "Regenerate the prediction after refreshing."
+        }
+    },
+
+    reports: {
+        title: "📄 Reports",
+        issues: {
+            "Report Not Generating":
+                "Wait a few seconds and try generating the report again.",
+
+            "Download Failed":
+                "Check your internet connection and try again.",
+
+            "PDF Not Opening":
+                "Download the report again and open it with a PDF reader.",
+
+            "Missing Data":
+                "Generate a fresh report after completing assessments."
+        }
+    },
+
+    profile: {
+        title: "👤 Profile",
+        issues: {
+            "Cannot Update Profile":
+                "Ensure all required fields are filled correctly.",
+
+            "Changes Not Saving":
+                "Refresh the page and try saving again.",
+
+            "Incorrect Information":
+                "Update your profile details and save changes."
+        }
+    },
+
+    technical: {
+        title: "⚙️ Technical Support",
+        issues: {
+            "Website Slow":
+                "Check your internet connection and refresh the page.",
+
+            "Blank Screen":
+                "Clear browser cache and reload the page.",
+
+            "Unexpected Error":
+                "Refresh the page and try again.",
+
+            "Session Expired":
+                "Login again to continue."
+        }
+    }
+};
+
+const chatBody = document.getElementById("chatBody");
+
+function showMainMenu() {
+
+    chatBody.innerHTML = `
+        <div class="bot-message">
+            Hello! 👋 <br><br>
+            Welcome to MindMate Support.<br><br>
+            Which page are you facing an issue with?
+        </div>
+
+        <button class="option-btn" onclick="showCategory('dashboard')">📊 Dashboard</button>
+
+        <button class="option-btn" onclick="showCategory('assessment')">📝 Assessment</button>
+
+        <button class="option-btn" onclick="showCategory('wellness')">🧠 Wellness Twin</button>
+
+        <button class="option-btn" onclick="showCategory('prediction')">📈 Prediction Results</button>
+
+        <button class="option-btn" onclick="showCategory('reports')">📄 Reports</button>
+
+        <button class="option-btn" onclick="showCategory('profile')">👤 Profile</button>
+
+        <button class="option-btn" onclick="showCategory('technical')">⚙️ Technical Support</button>
+    `;
+}
+
+function showCategory(category) {
+
+    let section = supportData[category];
+
+    let html = `
+        <div class="bot-message">
+            ${section.title}<br><br>
+            Please select your issue.
+        </div>
+    `;
+
+    for (let issue in section.issues) {
+
+        html += `
+            <button class="option-btn"
+            onclick="showSolution('${category}','${issue}')">
+            ${issue}
+            </button>
+        `;
+    }
+
+    html += `
+        <button class="option-btn"
+        onclick="showMainMenu()">
+        🏠 Main Menu
+        </button>
+    `;
+
+    chatBody.innerHTML = html;
+}
+
+function showSolution(category, issue) {
+
+    const solution = supportData[category].issues[issue];
+
+    chatBody.innerHTML = `
+        <div class="bot-message">
+            <strong>${issue}</strong>
+        </div>
+
+        <div class="solution-box">
+            ${solution}
+        </div>
+
+        <br>
+
+        <div class="bot-message">
+            Did this solve your issue?
+        </div>
+
+        <button class="option-btn"
+        onclick="showResolved()">
+        ✅ Yes
+        </button>
+
+        <button class="option-btn"
+        onclick="showCategory('${category}')">
+        ❌ No
+        </button>
+
+        <button class="option-btn"
+        onclick="showMainMenu()">
+        🏠 Main Menu
+        </button>
+    `;
+}
+
+function showResolved() {
+
+    chatBody.innerHTML = `
+        <div class="solution-box">
+            💜 Glad I could help!
+        </div>
+
+        <br>
+
+        <button class="option-btn"
+        onclick="showMainMenu()">
+        Start New Query
+        </button>
+    `;
+}
+
+document.addEventListener("DOMContentLoaded", showMainMenu);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindMate | Trigger Analysis</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/global.css">
+
+    <link rel="stylesheet" href="/css/trigger-analysis.css">
+</head>
+<body>
+
+    <div class="ambient-bubble-green"></div>
+    <div class="ambient-bubble-yellow"></div>
+
+          <div class="col-lg-2 sidebar">
+    <div class="logo-section">
+        <h5>🧠 MindMate</h5>
+    </div>
+
+    <ul class="nav-menu">
+        <li onclick="window.location.href='/dashboard'">
+            <i class="fa-solid fa-house"></i> Dashboard
+        </li>
+        <li  onclick="window.location.href='/questionnaire'">
+            <i class="fa-solid fa-triangle-exclamation"></i> Daily Check-in
+        </li>
+        <li onclick="window.location.href='/wellness-twin'">
+            <i class="fa-solid fa-brain"></i> Wellness Twin
+        </li>
+        <li onclick="window.location.href='/recovery-board'">
+            <i class="fa-solid fa-seedling"></i> Recovery Board
+        </li>
+        <li class="active" onclick="window.location.href='/trigger-analysis'">
+            <i class="fa-solid fa-chart-line"></i> Trigger Analysis
+        </li>
+        <li onclick="window.location.href='/emergency'">
+            <i class="fa-solid fa-triangle-exclamation"></i> Emergency Support
+        </li>
+        <li onclick="window.location.href='/profile'">
+            <i class="fa-solid fa-triangle-exclamation"></i> Settings
+        </li>
+        <li onclick="window.location.href='/help'">
+                <i class="fa-solid fa-headset"></i>
+                Contact Support
+            </li>
+    </ul>
+
+    <button class="logout-btn" onclick="logout()">
+        Logout
+    </button>
+
+    <div class="sidebar-leaves">
+        <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="botanicalGrad1" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#cfc0ff" stop-opacity="0.75" />
+                    <stop offset="100%" stop-color="#b19eff" stop-opacity="0.55" />
+                </linearGradient>
+                <linearGradient id="botanizedGrad2" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#ffd4f0" stop-opacity="0.8" />
+                    <stop offset="100%" stop-color="#cfb6ff" stop-opacity="0.6" />
+                </linearGradient>
+            </defs>
+            <path d="M 10 240 Q 40 180 85 130 T 170 80" stroke="url(#botanicalGrad1)" stroke-width="3" fill="none" opacity="0.4" stroke-linecap="round"/>
+            <path d="M 45 175 Q 80 160 120 145" stroke="url(#botanicalGrad1)" stroke-width="2" fill="none" opacity="0.3" stroke-linecap="round"/>
+            <path d="M 65 150 Q 110 120 165 115" stroke="url(#botanicalGrad1)" stroke-width="2" fill="none" opacity="0.3" stroke-linecap="round"/>
+            <path d="M 48 135 C 45 90, 42 50, 52 28 C 65 50, 68 90, 52 135 Z" fill="url(#botanizedGrad2)" />
+            <path d="M 48 135 Q 49 80 52 28" stroke="rgba(255,255,255,0.4)" stroke-width="1" fill="none" />
+            <path d="M 32 148 C 15 130, 10 115, 12 102 C 28 110, 38 125, 36 145 Z" fill="url(#botanicalGrad1)" />
+            <path d="M 34 146 Q 24 125 12 102" stroke="rgba(255,255,255,0.3)" stroke-width="0.8" fill="none" />
+            <path d="M 42 125 C 25 100, 20 80, 28 62 C 42 75, 52 98, 45 120 Z" fill="url(#botanicalGrad1)" />
+            <path d="M 43 122 Q 33 95 28 62" stroke="rgba(255,255,255,0.3)" stroke-width="0.9" fill="none" />
+            <path d="M 66 150 C 75 110, 95 85, 150 102 C 120 135, 95 155, 68 152 Z" fill="url(#botanizedGrad2)" />
+            <path d="M 66 150 Q 105 125 150 102" stroke="rgba(255,255,255,0.4)" stroke-width="1.2" fill="none" />
+            <path d="M 105 152 C 125 135, 155 140, 202 165 C 165 185, 130 180, 107 156 Z" fill="url(#botanicalGrad1)" />
+            <path d="M 105 152 Q 150 155 202 165" stroke="rgba(255,255,255,0.4)" stroke-width="1.2" fill="none" />
+            <path d="M 132 178 C 155 175, 185 188, 222 215 C 185 225, 155 210, 134 182 Z" fill="url(#botanizedGrad2)" />
+            <path d="M 132 178 Q 175 195 222 215" stroke="rgba(255,255,255,0.3)" stroke-width="1" fill="none" />
+        </svg>
+    </div>
+</div>
+
+    <main class="content-wrapper">
+        <header>
+            <h1>Trigger Analysis</h1>
+            <p>Understand what affects your well-being the most by mapping recent check-ins.</p>
+        </header>
+
+        <div class="grid-container">
+            
+            <div class="white-card">
+                <h3>Top Triggers</h3>
+                <div class="chart-box">
+                    <canvas id="triggerPieChart"></canvas>
+                </div>
+            </div>
+
+            <div class="white-card">
+                <h3>Trigger Impact Over Time</h3>
+                <div class="chart-box">
+                    <canvas id="impactBarChart"></canvas>
+                </div>
+            </div>
+
+            <div class="white-card">
+                <h3>Trigger Insights</h3>
+                <div id="aiInsightsList" class="insights-stack"></div>
+            </div>
+
+            <div class="white-card">
+                <h3>Recent Events Impact</h3>
+                <ul id="impactBadges" class="badge-list">
+                    <li>Exam Pressure <span class="badge-pill" id="badge_academic">...</span></li>
+                    <li>Late Night Device Overuse <span class="badge-pill" id="badge_screen">...</span></li>
+                    <li>Less Sleep Hours <span class="badge-pill" id="badge_sleep">...</span></li>
+                    <li>Physical App Activity <span class="badge-pill" id="badge_activity">...</span></li>
+                </ul>
+            </div>
+
+        </div>
+    </main>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const dropdown = document.getElementById('historyDropdown');
+    const historyData = JSON.parse(localStorage.getItem('checkInHistory')) || [];
+    let activeChartPie = null;
+    let activeChartBar = null;
+
+    // 1. Dropdown options populate karo saari dates ke sath
+    if (dropdown && historyData.length > 0) {
+        // Clear previous dynamic options if any, keep only first
+        dropdown.innerHTML = '<option value="current">Current Live Check-in (Most Recent)</option>';
+        
+        historyData.forEach((record) => {
+            const option = document.createElement('option');
+            option.value = record.id;
+            option.textContent = `Check-in: ${record.date}`;
+            dropdown.appendChild(option);
+        });
+    }
+
+    // 2. Main core renderer function jo data ke hisab se dashboard badlega
+    function renderAnalysisPage(userData) {
+        const sleep = parseFloat(userData.sleep_hours) || 7;
+        const screen = parseFloat(userData.screen_time) || 4;
+        const academic = parseFloat(userData.academic_pressure) || 5;
+        const activity = parseFloat(userData.physical_activity) || 2;
+        const social = parseFloat(userData.social_support) || 6;
+
+        // Computation calculations
+        const sleepTrigger = Math.max(0, 8 - sleep) * 2; 
+        const screenTrigger = screen * 1.5;
+        const academicTrigger = academic * 1.8;
+        const activityTrigger = Math.max(0, 3 - activity) * 2;
+        const totalIntensity = sleepTrigger + screenTrigger + academicTrigger + activityTrigger || 1;
+
+        const sleepPct = Math.round((sleepTrigger / totalIntensity) * 100);
+        const screenPct = Math.round((screenTrigger / totalIntensity) * 100);
+        const academicPct = Math.round((academicTrigger / totalIntensity) * 100);
+        const activityPct = Math.round((activityTrigger / totalIntensity) * 100);
+
+        // --- CHART 1: DOUGHNUT PIE RE-RENDER ---
+        const ctxPie = document.getElementById('triggerPieChart')?.getContext('2d');
+        if (ctxPie) {
+            if (activeChartPie) activeChartPie.destroy(); // Purana chart memory se delete karo
+            activeChartPie = new Chart(ctxPie, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Sleep Quality', 'Device Use', 'Study Strain', 'Social Life'],
+                    datasets: [{
+                        data: [sleepPct, screenPct, academicPct, activityPct],
+                        backgroundColor: ['#FF6B95', '#fb923c', '#818cf8', '#34d399'],
+                        borderWidth: 0
+                    }]
+                },
+                options: { cutout: '72%', plugins: { legend: { display: true, position: 'bottom' } } }
+            });
+        }
+
+        // --- CHART 2: BAR RE-RENDER ---
+        const ctxBar = document.getElementById('impactBarChart')?.getContext('2d');
+        if (ctxBar) {
+            if (activeChartBar) activeChartBar.destroy(); // Reset previous instance
+            activeChartBar = new Chart(ctxBar, {
+                type: 'bar',
+                data: {
+                    labels: ['Academic Load', 'Work/Study Hours', 'Exercise', 'Relationships'],
+                    datasets: [{
+                        data: [academic * 10, screen * 10, activity * 10, social * 10],
+                        backgroundColor: ['#34d399', '#fbbf24', '#f87171', '#34d399'],
+                        borderRadius: 6
+                    }]
+                },
+                options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { min: 0, max: 100 } } }
+            });
+        }
+
+        // --- ONLINE SMART SUGGESTION ENGINE ---
+        const insightList = document.getElementById('aiInsightsList');
+        const sleepSuggestions = [
+            "🔥 <b>Study Strain</b> is impacting sleep quality significantly. <a href='/recovery-board' style='color:#6366f1; font-weight:600;'>Open Recovery Board 🌾</a> to try white-noise soundscapes.",
+            "💤 Your sleep window was low. Try out the 4-7-8 deep breathing routine in your <a href='/wellness-twin' style='color:#6366f1; font-weight:600;'>Wellness Twin 👥</a> panel before bed."
+        ];
+        const screenSuggestions = [
+            "📱 <b>Screen Use</b> is highly correlated with late-night anxiety. Action: Check detox meter on the <a href='/dashboard' style='color:#6366f1; font-weight:600;'>Dashboard 🏠</a>."
+        ];
+
+        let finalSuggestionsHTML = "";
+        if (sleep < 6) finalSuggestionsHTML += `<p>${sleepSuggestions[Math.floor(Math.random() * sleepSuggestions.length)]}</p>`;
+        if (screen > 6) finalSuggestionsHTML += `<p>${screenSuggestions[Math.floor(Math.random() * screenSuggestions.length)]}</p>`;
+
+        if (finalSuggestionsHTML === "") {
+            finalSuggestionsHTML = "<p>🌱 <b>Looking Great!</b> All checked metrics are working within optimal thresholds.</p>";
+        }
+        if (insightList) insightList.innerHTML = finalSuggestionsHTML;
+
+        // --- BADGES SYNCHRONIZATION ---
+        function setBadge(id, value, type) {
+            const el = document.getElementById(id);
+            if (!el) return;
+            if (type === 'high_is_bad') {
+                if (value > 6.5) { el.textContent = "HIGH"; el.className = "badge-pill badge-high"; }
+                else if (value > 4) { el.textContent = "MEDIUM"; el.className = "badge-pill badge-medium"; }
+                else { el.textContent = "LOW"; el.className = "badge-pill badge-low"; }
+            } else {
+                if (value < 5.5) { el.textContent = "HIGH"; el.className = "badge-pill badge-high"; }
+                else { el.textContent = "HEALTHY"; el.className = "badge-pill badge-healthy"; }
+            }
+        }
+        setBadge('badge_academic', academic, 'high_is_bad');
+        setBadge('badge_screen', screen, 'high_is_bad');
+        setBadge('badge_sleep', sleep, 'low_is_bad');
+    }
+
+    // 3. INITIAL LOAD: Sabse pehle current live data dikhao
+    const initialData = JSON.parse(localStorage.getItem('userData')) || {};
+    renderAnalysisPage(initialData);
+
+    // 4. EVENT LISTENER: Jab user dropdown badle, data fetch karke page reload karado instant!
+    dropdown?.addEventListener('change', (e) => {
+        const selectedValue = e.target.value;
+        
+        if (selectedValue === 'current') {
+            const currentData = JSON.parse(localStorage.getItem('userData')) || {};
+            renderAnalysisPage(currentData);
+        } else {
+            // Find specific record from history array
+            const record = historyData.find(item => item.id === selectedValue);
+            if (record && record.metrics) {
+                renderAnalysisPage(record.metrics);
+            }
+        }
+    });
+});
+</script>
+</body>
+</html>

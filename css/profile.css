@@ -1,0 +1,434 @@
+/* Styles for profile page */
+/* GOOGLE FONT */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+/* ====================================================
+   SMART RESPONSIVE VIEWPORT CONSTRAINTS (FIXED OVERFLOW)
+   ==================================================== */
+body, html {
+    min-height: 100vh;
+    overflow-x: hidden; /* Restricts bad horizontal sways */
+    overflow-y: auto;   /* SMART ENGINE: Automatically activates vertical scrollbar ONLY when content overflows */
+    background: linear-gradient(135deg, #faf7ff, #f5efff, #fff7fb);
+}
+
+.format-viewport {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================
+SIDEBAR
+========================== */
+.sidebar {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    height: auto;
+    border-right: 1px solid rgba(124, 92, 255, 0.08);
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+}
+
+.logo-section {
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 12;
+}
+
+.logo-section h5 {
+    color: #8b5cf6;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    font-size: 20px;
+}
+
+.nav-menu {
+    list-style: none;
+    padding-left: 0;
+    position: relative;
+    z-index: 12;
+    margin-bottom: 10px;
+}
+
+.nav-menu li {
+    padding: 10px 16px !important;
+    margin-bottom: 6px;
+    border-radius: 12px !important;
+    color: #6f6f6f;
+    cursor: pointer;
+    transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    font-size: 15px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+
+.nav-menu li:hover, .nav-menu li.active {
+    background: #efe8ff;
+    color: #8b5cf6;
+    transform: translateX(4px);
+}
+
+.logout-btn {
+    margin-top: auto;
+    margin-bottom: 15px;
+    width: 100%;
+    border: 1px solid rgba(255, 125, 125, 0.1);
+    background: rgba(255, 244, 244, 0.8);
+    color: #ff7d7d;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    position: relative;
+    z-index: 12;
+    transition: all 0.3s ease;
+}
+
+.logout-btn:hover {
+    background: #ff7d7d;
+    color: #ffffff;
+}
+
+.sidebar-leaves {
+    position: absolute;
+    bottom: -10px;
+    left: -10px;
+    width: 115%;
+    pointer-events: none;
+    z-index: 11;
+    transform-origin: bottom left;
+    animation: leafSwayMotion 6s ease-in-out infinite alternate;
+}
+
+.sidebar-leaves svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+@keyframes leafSwayMotion {
+    0% { transform: scale(1) rotate(0deg); }
+    100% { transform: scale(1.02) rotate(2deg) translateY(-1px); }
+}
+
+/* ==========================
+MAIN PANELS & WRAPPERS
+========================== */
+.raw-panel {
+    min-height: 100vh;
+    height: auto; /* Dynamically stretches if content pushes out on resize */
+    overflow-y: visible;
+}
+
+.profile-wrapper {
+    padding: 25px 40px; 
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+    z-index: 2;
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.page-title span {
+    background: linear-gradient(135deg, #8b5cf6, #ec4899);
+    color: white;
+    padding: 8px 26px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: .5px;
+    box-shadow: 0 8px 20px rgba(139,92,246,.2);
+    display: inline-block;
+}
+
+/* ==========================
+PROFILE CARD
+========================== */
+.profile-card {
+    background: linear-gradient(135deg, rgba(255,255,255,.95), rgba(244,239,255,.95));
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 15px 60px; /* Enhanced horizontal breadth stretch */
+    box-shadow: 0 12px 35px rgba(149,126,255,.08);
+    margin-bottom: 24px; /* Symmetrical margin gap restored */
+}
+
+.avatar-wrap { position: relative; display: inline-block; }
+.camera-btn {
+    position: absolute;
+    right: 2px;
+    bottom: 2px;
+    background: white;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,.1);
+    cursor: pointer;
+    color: #6f6f6f;
+    transition: all 0.2s;
+}
+.camera-btn:hover { color: #8b5cf6; transform: translateY(-2px); }
+
+.avatar {
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid white;
+    box-shadow: 0 0 25px rgba(155,100,255,.25);
+    transition: .3s;
+}
+.avatar:hover { transform: scale(1.04); }
+
+.profile-card h3 {
+    color: #2f2f2f;
+    font-size: 22px; 
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+.profile-card p {
+    color: #909090;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+.badge-student {
+    background: linear-gradient(135deg, #ece5ff, #fce7f3);
+    color: #7c5cff;
+    padding: 10px 14px;
+    border-radius: 20px;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* ==========================
+GRID INFO CARDS (Full-Width Stacked Layout Like Image 1)
+========================== */
+.core-info-row {
+    flex-grow: 1;
+    max-height: none !important; /* Fixed spacing restriction for fluid responsive scroll */
+}
+
+.info-card {
+    background: rgba(255,255,255,.92);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 25px 50px; /* Perfect balance between 40px breadth stack and edge stretches */
+    box-shadow: 0 8px 25px rgba(149,126,255,.06);
+    width: 100%; 
+    margin-bottom: 24px; /* Symmetrical layout gap updated */
+}
+
+.card-header-custom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px; 
+    border-bottom: 1px solid #f3eeff;
+    padding-bottom: 8px;
+}
+.card-header-custom h5 {
+    margin: 0;
+    font-size: 17px; 
+    font-weight: 600;
+    color: #2f2f2f;
+}
+.card-header-custom a {
+    text-decoration: none;
+    color: #8b5cf6;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+/* Row elements stretched dynamically left to right like screenshot */
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    row-gap: 8px; 
+    column-gap: 20px;
+    align-items: center;
+}
+.info-grid div:nth-child(odd) {
+    color: #7c7c7c;
+    font-size: 14px; 
+    text-align: left;
+}
+.info-grid div:nth-child(even) {
+    color: #1f2937;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: right;
+}
+
+/* FULL WIDTH MEMBER BASELINE CONTAINER */
+.member-card {
+    background: linear-gradient(135deg, hsl(0, 0%, 100%), #f4efff);
+    padding: 16px 50px; /* Breadth matched with the wide info cards stretch grid */
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(149,126,255,.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 4px; 
+}
+.member-card span { color: #8c8c8c; font-size: 13px; }
+.member-card strong { color: #2f2f2f; font-size: 13px; }
+
+/* HOVER LIFTS */
+.profile-card, .info-card, .member-card {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+.profile-card:hover, .info-card:hover, .member-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(139, 92, 246, 0.12);
+}
+
+/* ====================================================
+   BUBBLES LAYER OVERLAY CORRECTION (BROUGHT TO FRONT)
+   ==================================================== */
+.floating-bubbles-premium {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    /* CRITICAL FIXES: Brought to top layer like profile.css but allowing clicks through safely */
+    z-index: 99999 !important; 
+    pointer-events: none !important; /* This guarantees buttons/cards remain clickable underneath */
+}
+
+/* ====================================================
+   FIXED BUBBLE COLOR TRANSPARENCY ENGINE
+   ==================================================== */
+.floating-bubbles-premium .glass-bubble {
+    position: absolute;
+    border-radius: 50%;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    bottom: -200px;
+    animation: premiumFloatUp linear infinite;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    /* Soft outside shadow without forcing solid inside white color blocks */
+    box-shadow: 0 15px 35px rgba(139, 92, 246, 0.12); 
+    pointer-events: none !important;
+}
+
+@keyframes premiumFloatUp {
+    0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+    5% { opacity: 1; }
+    50% { transform: translateY(-60vh) translateX(35px) rotate(180deg); opacity: 1; }
+    75% { transform: translateY(-90vh) translateX(-15px) rotate(270deg); opacity: 1; }
+    100% { transform: translateY(-135vh) translateX(5px) rotate(360deg); opacity: 0; }
+}
+
+/* MODALS */
+.modal-content { border: none; border-radius: 20px; overflow: hidden; }
+.modal-header { background: linear-gradient(135deg, #8b5cf6, #ec4899); color: white; padding: 12px 20px; }
+.form-control, .form-select { height: 45px; border-radius: 10px; font-size: 14px; }
+
+/* ====================================================
+   RESPONSIVE DESIGN ADAPTATIONS
+   ==================================================== */
+@media(max-width:1200px){
+    .cards-grid { grid-template-columns: repeat(2, 1fr); }
+    .overview-wrapper, .bottom-grid { grid-template-columns: 1fr; }
+}
+@media(max-width:900px){
+    .dashboard-container { flex-direction: column; }
+    .sidebar { width: 100%; height: auto; position: relative; }
+    .main-content { padding: 20px; }
+    .twin-grid { grid-template-columns: 1fr; }
+}
+@media(max-width:600px){
+    .cards-grid { grid-template-columns: 1fr; }
+    .top-header { flex-direction: column; gap: 20px; align-items: flex-start; }
+    .profile-section { flex-wrap: wrap; }
+    .graph-header { flex-direction: column; gap: 10px; }
+}
+
+/* --- Desktop layout ko safe rakh ke sirf responsive spacing --- */
+@media (max-width: 1200px) {
+    body {
+        flex-direction: column !important; /* Sidebar upar, content niche */
+    }
+    .sidebar, aside {
+        width: 100% !important;
+        height: auto !important;
+        position: relative !important;
+        padding: 20px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        background-image: none !important; /* Mobile pe background leaves overlap rokne ke liye */
+    }
+    .sidebar nav {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 10px !important;
+        margin-bottom: 20px;
+    }
+    .sidebar nav a {
+        padding: 10px 14px !important;
+        font-size: 14px !important;
+    }
+    .sidebar-brand {
+        margin-bottom: 20px !important;
+        padding-left: 0 !important;
+    }
+    .sidebar-footer {
+        width: 100% !important;
+        max-width: 300px;
+    }
+    .content-wrapper, .content, main {
+        width: 100% !important;
+        padding: 20px !important;
+    }
+    /* Grids stack properly */
+    .grid-container, .charts-grid, .info-grid, .dashboard-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+}
+
+
+/* --- Profile Details Card Adaptability --- */
+@media (max-width: 1024px) {
+    .profile-header-card, .personal-info-section {
+        flex-direction: column !important; /* Converts horizontal profiles to vertical arrays */
+        text-align: center !important;
+        gap: 15px !important;
+    }
+    
+    .profile-details-grid {
+        grid-template-columns: 1fr !important;
+    }
+}

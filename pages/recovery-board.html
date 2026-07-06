@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindMate - Recovery Board</title>
+
+    <link rel="stylesheet" href="/css/recovery-board.css">
+          <link rel="stylesheet"
+      href="/css/global.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <div class="col-lg-2 sidebar">
+    <div class="logo-section">
+        <h5>🧠 MindMate</h5>
+    </div>
+
+    <ul class="nav-menu">
+        <li onclick="window.location.href='/dashboard'">
+            <i class="fa-solid fa-house"></i> Dashboard
+        </li>
+        <li  onclick="window.location.href='/questionnaire'">
+            <i class="fa-solid fa-triangle-exclamation"></i> Daily Check-in
+        </li>
+        <li onclick="window.location.href='/wellness-twin'">
+            <i class="fa-solid fa-brain"></i> Wellness Twin
+        </li>
+        <li class="active" onclick="window.location.href='/recovery-board'">
+            <i class="fa-solid fa-seedling"></i> Recovery Board
+        </li>
+        <li onclick="window.location.href='/trigger-analysis'">
+            <i class="fa-solid fa-chart-line"></i> Trigger Analysis
+        </li>
+        <li onclick="window.location.href='/emergency'">
+            <i class="fa-solid fa-triangle-exclamation"></i> Emergency Support
+        </li>
+        <li onclick="window.location.href='/profile'">
+            <i class="fa-solid fa-triangle-exclamation"></i> Settings
+        </li>
+        <li onclick="window.location.href='/help'">
+                <i class="fa-solid fa-headset"></i>
+                Contact Support
+            </li>
+    </ul>
+
+    <button class="logout-btn" onclick="logout()">
+        Logout
+    </button>
+
+    <div class="sidebar-leaves">
+        <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="botanicalGrad1" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#cfc0ff" stop-opacity="0.75" />
+                    <stop offset="100%" stop-color="#b19eff" stop-opacity="0.55" />
+                </linearGradient>
+                <linearGradient id="botanizedGrad2" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#ffd4f0" stop-opacity="0.8" />
+                    <stop offset="100%" stop-color="#cfb6ff" stop-opacity="0.6" />
+                </linearGradient>
+            </defs>
+            <path d="M 10 240 Q 40 180 85 130 T 170 80" stroke="url(#botanicalGrad1)" stroke-width="3" fill="none" opacity="0.4" stroke-linecap="round"/>
+            <path d="M 45 175 Q 80 160 120 145" stroke="url(#botanicalGrad1)" stroke-width="2" fill="none" opacity="0.3" stroke-linecap="round"/>
+            <path d="M 65 150 Q 110 120 165 115" stroke="url(#botanicalGrad1)" stroke-width="2" fill="none" opacity="0.3" stroke-linecap="round"/>
+            <path d="M 48 135 C 45 90, 42 50, 52 28 C 65 50, 68 90, 52 135 Z" fill="url(#botanizedGrad2)" />
+            <path d="M 48 135 Q 49 80 52 28" stroke="rgba(255,255,255,0.4)" stroke-width="1" fill="none" />
+            <path d="M 32 148 C 15 130, 10 115, 12 102 C 28 110, 38 125, 36 145 Z" fill="url(#botanicalGrad1)" />
+            <path d="M 34 146 Q 24 125 12 102" stroke="rgba(255,255,255,0.3)" stroke-width="0.8" fill="none" />
+            <path d="M 42 125 C 25 100, 20 80, 28 62 C 42 75, 52 98, 45 120 Z" fill="url(#botanicalGrad1)" />
+            <path d="M 43 122 Q 33 95 28 62" stroke="rgba(255,255,255,0.3)" stroke-width="0.9" fill="none" />
+            <path d="M 66 150 C 75 110, 95 85, 150 102 C 120 135, 95 155, 68 152 Z" fill="url(#botanizedGrad2)" />
+            <path d="M 66 150 Q 105 125 150 102" stroke="rgba(255,255,255,0.4)" stroke-width="1.2" fill="none" />
+            <path d="M 105 152 C 125 135, 155 140, 202 165 C 165 185, 130 180, 107 156 Z" fill="url(#botanicalGrad1)" />
+            <path d="M 105 152 Q 150 155 202 165" stroke="rgba(255,255,255,0.4)" stroke-width="1.2" fill="none" />
+            <path d="M 132 178 C 155 175, 185 188, 222 215 C 185 225, 155 210, 134 182 Z" fill="url(#botanizedGrad2)" />
+            <path d="M 132 178 Q 175 195 222 215" stroke="rgba(255,255,255,0.3)" stroke-width="1" fill="none" />
+        </svg>
+    </div>
+</div>
+
+    <main class="main-content">
+
+        <div class="top-header">
+            <div>
+                <h1>🌱 Recovery Board</h1>
+                <p>Your personalized wellness recovery journey</p>
+            </div>
+        </div>
+
+        <div class="top-grid">
+
+            <div class="card">
+                <h3>Today's Recovery Tasks</h3>
+                <div class="task-list" id="dynamicTaskList">
+                    </div>
+            </div>
+
+            <div class="card progress-card">
+                <h3>Recovery Progress</h3>
+                <div class="progress-circle" id="progressCircle">
+                    <div class="inner-circle" id="overallProgressText">
+                        0%
+                    </div>
+                </div>
+                <p id="progressFeedback">Loading your progress... 💜</p>
+            </div>
+
+        </div>
+
+        <div class="middle-grid">
+
+            <div class="card">
+                <h3>Recovery Roadmap</h3>
+                <div class="roadmap" id="roadmapContainer">
+                    </div>
+            </div>
+
+            <div class="card">
+                <h3>Focus Areas</h3>
+                
+                <div class="progress-item">
+                    <span>Sleep Quality</span>
+                    <span id="sleepScoreText">0%</span>
+                </div>
+                <div class="bar">
+                    <div class="fill" id="sleepBarFill" style="width: 0%"></div>
+                </div>
+
+                <div class="progress-item">
+                    <span>Stress Recovery</span>
+                    <span id="stressScoreText">0%</span>
+                </div>
+                <div class="bar">
+                    <div class="fill" id="stressBarFill" style="width: 0%"></div>
+                </div>
+
+                <div class="progress-item">
+                    <span>Mindfulness</span>
+                    <span id="mindScoreText">0%</span>
+                </div>
+                <div class="bar">
+                    <div class="fill" id="mindBarFill" style="width: 0%"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card insight-card">
+            <h3>🧠 AI Recovery Insight</h3>
+            <p id="aiDynamicInsight">
+                Analyzing your latest check-ins to generate custom recovery recommendations...
+            </p>
+        </div>
+
+        <div class="bottom-grid">
+
+            <div class="card streak-card">
+                <h3>🔥 Recovery Streak</h3>
+                <h2 id="dynamicStreakDisplay">0 Days</h2>
+                <p>Consistent wellness activities completed.</p>
+            </div>
+
+            <div class="card motivation-card">
+                <h3>💜 Daily Motivation</h3>
+                <p id="dynamicQuote">
+                    "Small daily improvements lead to lasting wellbeing."
+                </p>
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+<script>
+// Security Authentication Check
+const loggedInUser = localStorage.getItem("loggedInUser");
+if(!loggedInUser){
+    window.location.href = "/welcome";
+}
+
+// Default Tasks Array (Agar database/localStorage khali ho)
+let defaultTasks = [
+    { id: 1, text: "Drink 2L Water", completed: true },
+    { id: 2, text: "Sleep Before 11 PM", completed: false },
+    { id: 3, text: "Complete Daily Check-In", completed: true },
+    { id: 4, text: "10 Minutes Meditation", completed: false },
+    { id: 5, text: "30 Minutes Walk", completed: false },
+    { id: 6, text: "Screen-Free Before Sleep", completed: false }
+];
+
+// Load Motivation Quotes dynamically
+const quotes = [
+    "Small daily improvements lead to lasting wellbeing. Keep showing up for yourself.",
+    "Your mental health is a priority. Your happiness is an essential element.",
+    "Be proud of how hard you are trying. Every small step counts.",
+    "Recovery is not a race. Take your time, breathe, and keep moving forward."
+];
+
+// Initialize and Load Everything
+window.onload = function() {
+    loadDashboardData();
+    setRandomQuote();
+};
+
+function setRandomQuote() {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    document.getElementById("dynamicQuote").innerText = quotes[randomIndex];
+}
+
+function loadDashboardData() {
+    // LocalStorage se user specific tasks uthana
+    let userTasks = JSON.parse(localStorage.getItem(`tasks_${loggedInUser}`)) || defaultTasks;
+    
+    // Render Tasks Checklist
+    const taskListContainer = document.getElementById("dynamicTaskList");
+    taskListContainer.innerHTML = "";
+    
+    userTasks.forEach(task => {
+        const label = document.createElement("label");
+        label.innerHTML = `
+            <input type="checkbox" class="task-checkbox" ${task.completed ? 'checked' : ''} onclick="toggleTask(${task.id})"> 
+            ${task.text}
+        `;
+        taskListContainer.appendChild(label);
+    });
+
+    // Calculate progress metric and apply variables mapping
+    calculateProgress(userTasks);
+
+    // Dynamic Focus Metrics
+    const metrics = JSON.parse(localStorage.getItem(`metrics_${loggedInUser}`)) || { sleep: 75, stress: 68, mindfulness: 52, streak: 7 };
+    
+    document.getElementById("sleepScoreText").innerText = metrics.sleep + "%";
+    document.getElementById("sleepBarFill").style.width = metrics.sleep + "%";
+    
+    document.getElementById("stressScoreText").innerText = metrics.stress + "%";
+    document.getElementById("stressBarFill").style.width = metrics.stress + "%";
+    
+    document.getElementById("mindScoreText").innerText = metrics.mindfulness + "%";
+    document.getElementById("mindBarFill").style.width = metrics.mindfulness + "%";
+
+    document.getElementById("dynamicStreakDisplay").innerText = metrics.streak + " Days";
+
+    // Dynamic Roadmap Builder
+    renderRoadmap(metrics.streak);
+
+    // AI Dynamic Insight Generator based on scores
+    generateAIInsight(metrics.stress, metrics.sleep);
+}
+
+// Toggle Task state dynamically (FIXED: Added loadDashboardData recall)
+function toggleTask(id) {
+    let userTasks = JSON.parse(localStorage.getItem(`tasks_${loggedInUser}`)) || defaultTasks;
+    const task = userTasks.find(t => t.id === id);
+    if(task) {
+        task.completed = !task.completed;
+        localStorage.setItem(`tasks_${loggedInUser}`, JSON.stringify(userTasks));
+        
+        // Asli change: Data save karne ke baad pure metrics aur views ko update karo
+        loadDashboardData(); 
+    }
+}
+
+// Live Progress calculations (FIXED: Safe Variable Strings Interpolation)
+function calculateProgress(tasks) {
+    const total = tasks.length;
+    const completedCount = tasks.filter(t => t.completed).length;
+    const percent = total > 0 ? Math.round((completedCount / total) * 100) : 0;
+
+    // 🔥 FIX: Elements ko check karo pehle
+    const progressText = document.getElementById("overallProgressText");
+    if (progressText) {
+        progressText.innerText = percent + "%";
+    }
+    
+    // Setting CSS variable values for dynamic arc tracking safely
+    const progressCircle = document.getElementById("progressCircle");
+    if (progressCircle) {
+        const degreesValue = (percent * 3.6) + "deg";
+        progressCircle.style.setProperty("--progress", degreesValue);
+    }
+    
+    const feedbackText = document.getElementById("progressFeedback");
+    if(feedbackText) {
+        if(percent === 100) {
+            feedbackText.innerText = "Amazing! You completed all tasks today! 🌟";
+        } else if(percent >= 50) {
+            feedbackText.innerText = "More than halfway there! Keep going! 💜";
+        } else {
+            feedbackText.innerText = "Every small step helps. Let's complete more! 💪";
+        }
+    }
+}
+
+// Roadmap handling
+function renderRoadmap(streak) {
+    const container = document.getElementById("roadmapContainer");
+    container.innerHTML = `
+        <div class="road-item" style="color: #4b2d8c; font-weight: 600;">✅ Week 1: Mood Tracking & Logs</div>
+        <div class="road-item" style="color: #4b2d8c; font-weight: 600;">✅ Week 2: Daily Check-Ins habit</div>
+        <div class="road-item" style="${streak >= 7 ? 'color: #4b2d8c; font-weight: 600;' : 'color: #999;'}">
+            ${streak >= 7 ? '✅' : '🔄'} Week 3: Build Healthy Routine
+        </div>
+        <div class="road-item" style="${streak >= 15 ? 'color: #4b2d8c; font-weight: 600;' : 'color: #999;'}">
+            ${streak >= 15 ? '✅' : '🔒'} Week 4: Emotional Mastery Balance
+        </div>
+    `;
+}
+
+// Intelligent Dynamic AI Message
+function generateAIInsight(stress, sleep) {
+    const insightBox = document.getElementById("aiDynamicInsight");
+    if(stress > 70 && sleep < 60) {
+        insightBox.innerText = "🚨 High stress and poor sleep patterns detected. Focus heavily on 'Breathing Exercises' from the Emergency panel and try to clear screen time before 11 PM today.";
+    } else if(stress < 50) {
+        insightBox.innerText = "🧠 Excellent stability! Your stress indicators are well optimized this week. Maintain consistency in your mindfulness routines to unlock your next recovery streak milestone.";
+    } else {
+        insightBox.innerText = "📈 Your stress indicators have improved compared to last week. Maintaining healthy sleep patterns and mindfulness exercises can further boost your overall wellness metrics.";
+    }
+}
+</script>
+</body>
+</html>

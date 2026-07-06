@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MindMate - Wellness Assessment</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/css/profile.css">
+<link rel="stylesheet" href="/css/questionnaire.css">
+      <link rel="stylesheet"
+      href="/css/global.css">
+
+</head>
+<body>
+
+<div class="container-fluid p-0 format-viewport">
+    <div class="row g-0 h-100">
+
+        <!-- SIDEBAR -->
+        <div class="col-lg-2 sidebar">
+    <div class="logo-section">
+        <h5>🧠 MindMate</h5>
+    </div>
+
+    <ul class="nav-menu">
+        <li onclick="window.location.href='/dashboard'">
+            <i class="fa-solid fa-house"></i> Dashboard
+        </li>
+        <li class="active" onclick="window.location.href='/questionnaire'">
+            <i class="fa-solid fa-triangle-exclamation"></i> Daily Check-in
+        </li>
+        <li onclick="window.location.href='/wellness-twin'">
+            <i class="fa-solid fa-brain"></i> Wellness Twin
+        </li>
+        <li onclick="window.location.href='/recovery-board'">
+            <i class="fa-solid fa-seedling"></i> Recovery Board
+        </li>
+        <li onclick="window.location.href='/trigger-analysis'">
+            <i class="fa-solid fa-chart-line"></i> Trigger Analysis
+        </li>
+        <li onclick="window.location.href='/emergency'">
+            <i class="fa-solid fa-triangle-exclamation"></i> Emergency Support
+        </li>
+        <li onclick="window.location.href='/profile'">
+            <i class="fa-solid fa-triangle-exclamation"></i> Settings
+        </li>
+        <li onclick="window.location.href='/help'">
+                <i class="fa-solid fa-headset"></i>
+                Contact Support
+            </li>
+    </ul>
+
+    <button class="logout-btn" onclick="logout()">
+        Logout
+    </button>
+
+    <div class="sidebar-leaves">
+        <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="botanicalGrad1" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#cfc0ff" stop-opacity="0.75" />
+                    <stop offset="100%" stop-color="#b19eff" stop-opacity="0.55" />
+                </linearGradient>
+                <linearGradient id="botanizedGrad2" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#ffd4f0" stop-opacity="0.8" />
+                    <stop offset="100%" stop-color="#cfb6ff" stop-opacity="0.6" />
+                </linearGradient>
+            </defs>
+            <path d="M 10 240 Q 40 180 85 130 T 170 80" stroke="url(#botanicalGrad1)" stroke-width="3" fill="none" opacity="0.4" stroke-linecap="round"/>
+            <path d="M 45 175 Q 80 160 120 145" stroke="url(#botanicalGrad1)" stroke-width="2" fill="none" opacity="0.3" stroke-linecap="round"/>
+            <path d="M 65 150 Q 110 120 165 115" stroke="url(#botanicalGrad1)" stroke-width="2" fill="none" opacity="0.3" stroke-linecap="round"/>
+            <path d="M 48 135 C 45 90, 42 50, 52 28 C 65 50, 68 90, 52 135 Z" fill="url(#botanizedGrad2)" />
+            <path d="M 48 135 Q 49 80 52 28" stroke="rgba(255,255,255,0.4)" stroke-width="1" fill="none" />
+            <path d="M 32 148 C 15 130, 10 115, 12 102 C 28 110, 38 125, 36 145 Z" fill="url(#botanicalGrad1)" />
+            <path d="M 34 146 Q 24 125 12 102" stroke="rgba(255,255,255,0.3)" stroke-width="0.8" fill="none" />
+            <path d="M 42 125 C 25 100, 20 80, 28 62 C 42 75, 52 98, 45 120 Z" fill="url(#botanicalGrad1)" />
+            <path d="M 43 122 Q 33 95 28 62" stroke="rgba(255,255,255,0.3)" stroke-width="0.9" fill="none" />
+            <path d="M 66 150 C 75 110, 95 85, 150 102 C 120 135, 95 155, 68 152 Z" fill="url(#botanizedGrad2)" />
+            <path d="M 66 150 Q 105 125 150 102" stroke="rgba(255,255,255,0.4)" stroke-width="1.2" fill="none" />
+            <path d="M 105 152 C 125 135, 155 140, 202 165 C 165 185, 130 180, 107 156 Z" fill="url(#botanicalGrad1)" />
+            <path d="M 105 152 Q 150 155 202 165" stroke="rgba(255,255,255,0.4)" stroke-width="1.2" fill="none" />
+            <path d="M 132 178 C 155 175, 185 188, 222 215 C 185 225, 155 210, 134 182 Z" fill="url(#botanizedGrad2)" />
+            <path d="M 132 178 Q 175 195 222 215" stroke="rgba(255,255,255,0.3)" stroke-width="1" fill="none" />
+        </svg>
+    </div>
+</div>
+
+        <!-- MAIN CONTENT CONFIGURATION PANEL -->
+        <div class="col-lg-10 h-100 raw-panel">
+            
+            <!-- CORE QUESTIONNAIRE VIEWS -->
+            <div class="profile-wrapper" id="assessmentCoreContainer">
+                <div class="assessment-header text-center mb-3">
+                    <h2 class="main-title">Mental Wellness Assessment</h2>
+                    <p class="sub-title text-muted">Let's understand your wellness better.</p>
+                </div>
+
+                <div class="progress-container-box mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="step-indicator" id="stepIndicator">Step 1 of 4</span>
+                        <span class="percentage-label" id="percentageLabel">25% Completed</span>
+                    </div>
+                    <div class="progress-bar-glow">
+                        <div class="progress-fill" id="progressBarFill" style="width: 25%;"></div>
+                    </div>
+                </div>
+
+                <div class="assessment-card-wrapper flex-grow-1">
+                    <!-- SECTION 1: LIFESTYLE -->
+                    <div class="assessment-section active-section" id="section1">
+                        <h4 class="section-title mb-4">🌱 Lifestyle Assessment</h4>
+                        <div class="slider-stack-container">
+                            <div class="slider-row-item">
+                                <label class="slider-label">Daily Study Hours <span class="badge-value" id="val_study">6 hrs</span></label>
+                                <input type="range" class="form-range custom-slider" min="0" max="12" value="6" id="slide_study">
+                            </div>
+                            <div class="slider-row-item">
+                                <label class="slider-label">Daily Sleep Hours <span class="badge-value" id="val_sleep">7 hrs</span></label>
+                                <input type="range" class="form-range custom-slider" min="0" max="12" value="7" id="slide_sleep">
+                            </div>
+                            <div class="slider-row-item">
+                                <label class="slider-label">Screen Time Hours <span class="badge-value" id="val_screen">4 hrs</span></label>
+                                <input type="range" class="form-range custom-slider" min="0" max="15" value="4" id="slide_screen">
+                            </div>
+                            <div class="slider-row-item">
+                                <label class="slider-label">Physical Activity Level <span class="badge-value" id="val_physical">5/10</span></label>
+                                <input type="range" class="form-range custom-slider" min="0" max="10" value="5" id="slide_physical">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 2: ACADEMIC -->
+                    <div class="assessment-section" id="section2">
+                        <h4 class="section-title mb-4">📚 Academic Assessment</h4>
+                        <div class="slider-stack-container">
+                            <div class="slider-row-item">
+                                <label class="slider-label">Attendance Percentage <span class="badge-value" id="val_attendance">75%</span></label>
+                                <input type="range" class="form-range custom-slider" min="0" max="100" value="75" id="slide_attendance">
+                            </div>
+                            <div class="slider-row-item">
+                                <label class="slider-label">Current CGPA <span class="badge-value" id="val_cgpa">7.5</span></label>
+                                <input type="range" class="form-range custom-slider" min="0" max="10" step="0.1" value="7.5" id="slide_cgpa">
+                            </div>
+                            <div class="slider-row-item">
+                                <label class="slider-label">Academic Pressure <span class="badge-value" id="val_pressure">5/10</span></label>
+                                <input type="range" class="form-range custom-slider" min="1" max="10" value="5" id="slide_pressure">
+                            </div>
+                            <div class="slider-row-item">
+                                <label class="slider-label">Career Uncertainty <span class="badge-value" id="val_career">5/10</span></label>
+                                <input type="range" class="form-range custom-slider" min="1" max="10" value="5" id="slide_career">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 3: SUPPORT SYSTEM -->
+                    <div class="assessment-section" id="section3">
+                        <h4 class="section-title mb-4">🤝 Support System Assessment</h4>
+                        <div class="slider-stack-container">
+                            <div class="slider-row-item">
+                                <label class="slider-label">Social Support <span class="badge-value" id="val_social">6/10</span></label>
+                                <input type="range" class="form-range custom-slider" min="1" max="10" value="6" id="slide_social">
+                            </div>
+                            <div class="slider-row-item">
+                                <label class="slider-label">Family Support <span class="badge-value" id="val_family">7/10</span></label>
+                                <input type="range" class="form-range custom-slider" min="1" max="10" value="7" id="slide_family">
+                            </div>
+                            <div class="slider-row-item">
+                                <label class="slider-label">Peer Relationship Quality <span class="badge-value" id="val_peer">6/10</span></label>
+                                <input type="range" class="form-range custom-slider" min="1" max="10" value="6" id="slide_peer">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 4: WELLNESS & STRESS -->
+                    <div class="assessment-section" id="section4">
+                        <h4 class="section-title mb-4">⚡ Wellness & Stress Assessment</h4>
+                        <div class="slider-stack-container">
+                            <div class="slider-row-item">
+                                <label class="slider-label">Financial Stress <span class="badge-value" id="val_finance">4/10</span></label>
+                                <input type="range" class="form-range custom-slider" min="1" max="10" value="4" id="slide_finance">
+                            </div>
+                            <div class="slider-row-item">
+                                <label class="slider-label">Sleep Quality <span class="badge-value" id="val_sleep_qual">6/10</span></label>
+                                <input type="range" class="form-range custom-slider" min="1" max="10" value="6" id="slide_sleep_qual">
+                            </div>
+                            <div class="slider-row-item">
+                                <label class="slider-label">Daily Caffeine Intake <span class="badge-value" id="val_caffeine">2 cups</span></label>
+                                <input type="range" class="form-range custom-slider" min="0" max="10" value="2" id="slide_caffeine">
+                            </div>
+                            <div class="slider-row-item">
+                                <label class="slider-label">Extracurricular Activity Hours <span class="badge-value" id="val_extra">3 hrs</span></label>
+                                <input type="range" class="form-range custom-slider" min="0" max="20" value="3" id="slide_extra">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-footer-panel mt-3 d-flex justify-content-between">
+                    <button class="btn btn-prev" id="btnPrev" disabled onclick="navigateSection(-1)">Previous Section</button>
+                    <button class="btn btn-next" id="btnNext" onclick="navigateSection(1)">Next Section</button>
+                    <button class="btn btn-submit d-none" id="btnSubmit" onclick="submitAssessment()">Generate AI Wellness Report</button>
+                </div>
+            </div>
+
+            <!-- NEW: POST-SUBMISSION PROCESS SCREEN (100% MATCH WITH image_c07e8d.jpg) -->
+            <div class="profile-wrapper d-none" id="assessmentResultContainer">
+    <div class="text-center mb-4">
+        <h3 class="flow-header-title">QUESTIONNAIRE FLOW (OVERVIEW)</h3>
+        <p class="text-muted small fw-medium mt-1">Step Indicator</p>
+    </div>
+
+    <div class="stepper-overview-line mb-5">
+        <div class="step-circle-block finished">
+            <div class="num-node">1</div>
+            <span class="node-caption">Personal Details</span>
+        </div>
+        <div class="step-circle-block finished">
+            <div class="num-node">2</div>
+            <span class="node-caption">Sleep Assessment</span>
+        </div>
+        <div class="step-circle-block finished">
+            <div class="num-node">3</div>
+            <span class="node-caption">Lifestyle Analysis</span>
+        </div>
+        <div class="step-circle-block finished">
+            <div class="num-node">4</div>
+            <span class="node-caption">Mood Assessment</span>
+        </div>
+        <div class="step-circle-block current-active" id="step5Node">
+            <div class="num-node" id="step5Num">5</div>
+            <span class="node-caption">Journal Reflection</span>
+        </div>
+    </div>
+
+    <div class="overview-loading-card text-center p-4 mb-4">
+        <p class="build-profile-msg mb-4" id="loadingStatusText">Building your personalized wellness profile...</p>
+        <div class="vector-heart-holder mb-4">
+            <svg viewBox="0 0 160 140" class="premium-vector-heart" id="processingHeart">
+                <defs>
+                    <linearGradient id="heartBaseGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#b69aff" />
+                        <stop offset="100%" stop-color="#cfbeff" />
+                    </linearGradient>
+                    <linearGradient id="heartLeftHighlight" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#fff" stop-opacity="0.8" />
+                        <stop offset="100%" stop-color="#e6dbff" stop-opacity="0.3" />
+                    </linearGradient>
+                </defs>
+
+                <path d="M 80 125 C 70 120, 15 90, 15 45 C 15 15, 50 12, 80 42 Z" class="heart-shield-left" fill="url(#heartBaseGrad)" />
+                
+                <path d="M 80 125 C 90 120, 145 90, 145 45 C 145 15, 110 12, 80 42 Z" class="heart-shield-right" fill="url(#heartBaseGrad)" opacity="0.9"/>
+
+                <g class="left-botanical-lines">
+                    <path d="M 30 50 Q 55 58 78 48" stroke="url(#heartLeftHighlight)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                    <path d="M 24 70 Q 50 72 76 60" stroke="url(#heartLeftHighlight)" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    <path d="M 50 71 Q 62 82 77 78" stroke="url(#heartLeftHighlight)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+                    <path d="M 79 43 Q 74 75 79 115" stroke="#ffffff" stroke-width="2" fill="none" opacity="0.4" stroke-linecap="round"/>
+                </g>
+
+                <g class="right-botanical-tree" fill="#7452e0" opacity="0.85">
+                    <path d="M 81 110 Q 86 75 102 52 Q 115 40 122 38" stroke="#7452e0" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+                    <path d="M 90 85 Q 110 75 128 72" stroke="#7452e0" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+                    <path d="M 94 70 Q 112 55 132 52" stroke="#7452e0" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    
+                    <path d="M 122 38 C 128 32, 138 34, 142 39 C 135 44, 126 44, 122 38 Z" />
+                    <path d="M 128 72 C 135 68, 142 72, 145 78 C 138 82, 130 78, 128 72 Z" />
+                    <path d="M 110 62 C 116 54, 124 55, 128 62 C 122 68, 114 66, 110 62 Z" />
+                    <path d="M 102 52 C 104 42, 112 40, 116 46 C 112 52, 105 54, 102 52 Z" />
+                    <path d="M 112 88 C 118 85, 125 90, 126 95 C 120 98, 113 94, 112 88 Z" />
+                    <path d="M 95 95 C 100 92, 105 96, 106 101 C 101 103, 96 100, 95 95 Z" />
+                </g>
+
+                <g fill="#b19eff" opacity="0.6">
+                    <circle cx="12" cy="78" r="1.5" />
+                    <circle cx="20" cy="25" r="2" />
+                    <circle cx="140" cy="22" r="2.5" />
+                    <circle cx="152" cy="65" r="1.5" />
+                    <circle cx="135" cy="110" r="2" />
+                </g>
+            </svg>
+        </div>
+        <div class="d-flex align-items-center justify-content-center gap-3 w-75 mx-auto">
+            <div class="progress-bar-glow flex-grow-1">
+                <div class="progress-fill" id="overviewBarFill" style="width: 0%;"></div>
+            </div>
+            <span class="percentage-count-text text-muted fw-bold" id="overviewPercentage">0%</span>
+        </div>
+    </div>
+
+    <div class="analysis-complete-card text-center p-4" id="successBoxCard">
+        <h5 class="success-title mb-1">Analysis Complete!</h5>
+        <p class="success-subtitle text-muted mb-4">Your results are ready.</p>
+        <button class="btn btn-view-dashboard" onclick="window.location.href='/dashboard'">View Dashboard</button>
+    </div>
+</div>
+
+        </div>
+
+    </div>
+                <div class="post-submit-bg-leaves">
+                    <svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="submitLeafBlue" x1="0%" y1="100%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#b9c6ff" stop-opacity="0.8" />
+                                <stop offset="100%" stop-color="#9eb1ff" stop-opacity="0.5" />
+                            </linearGradient>
+                            <linearGradient id="submitLeafPink" x1="0%" y1="100%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#ffd5ee" stop-opacity="0.85" />
+                                <stop offset="100%" stop-color="#ffbcdc" stop-opacity="0.55" />
+                            </linearGradient>
+                        </defs>
+
+                        <path d="M 180 300 Q 150 180 175 40" stroke="#dcd0ff" stroke-width="2.5" fill="none" opacity="0.5" stroke-linecap="round"/>
+
+                        <path d="M 165 240 C 120 230, 100 250, 95 270 C 125 275, 155 260, 165 240 Z" fill="url(#submitLeafBlue)" />
+                        <path d="M 170 220 C 195 200, 210 215, 215 235 C 195 245, 175 235, 170 220 Z" fill="url(#submitLeafBlue)" opacity="0.7"/>
+                        <path d="M 160 185 C 110 170, 95 190, 85 215 C 115 220, 145 205, 160 185 Z" fill="url(#submitLeafBlue)" />
+
+                        <path d="M 165 160 C 195 140, 210 155, 215 175 C 190 185, 172 175, 165 160 Z" fill="url(#submitLeafPink)" />
+                        <path d="M 162 135 C 120 115, 110 135, 102 158 C 130 162, 155 150, 162 135 Z" fill="url(#submitLeafPink)" />
+                        <path d="M 168 105 C 195 85, 205 98, 210 115 C 190 125, 175 118, 168 105 Z" fill="url(#submitLeafPink)" />
+                        <path d="M 170 85 C 135 60, 130 80, 125 100 C 150 102, 165 95, 170 85 Z" fill="url(#submitLeafPink)" />
+                        <path d="M 175 40 C 165 15, 180 5, 185 0 C 190 15, 185 30, 175 40 Z" fill="url(#submitLeafPink)" />
+                    </svg>
+                </div>
+
+            </div>
+
+<script src="/js/profile.js"></script>
+<script src="/js/questionnaire.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

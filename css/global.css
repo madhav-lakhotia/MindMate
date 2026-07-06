@@ -1,0 +1,182 @@
+/* Global styles for NeuroGuard-AI */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif, Arial, Helvetica !important;
+    background: linear-gradient(135deg, #faf7ff, #f5efff, #fff7fb) !important;
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: #34355f;
+}
+
+/* ====================================================
+   🌍 FIXED & MINIMALIST ICON-ONLY SIDEBAR FOR MOBILE/INSPECT
+   ==================================================== */
+
+@media (max-width: 1024px) {
+    body {
+        flex-direction: row !important; /* Sidebar left me hi rahega */
+        overflow-x: hidden;
+    }
+
+    /* Sidebar transforms into a slim icon bar */
+    .sidebar, aside {
+        width: 80px !important; /* Fixed micro width so it doesn't break */
+        height: 100vh !important;
+        position: sticky !important;
+        top: 0 !important;
+        padding: 25px 10px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        border-right: 1px solid rgba(0, 0, 0, 0.05) !important;
+        border-bottom: none !important;
+        background-size: 180% !important; /* Leaves responsive scaling */
+        background-position: bottom center !important;
+    }
+
+    /* Hide the text component of the branding logo, keep only icon/emoji */
+    .sidebar-brand, .logo {
+        font-size: 22px !important;
+        margin-bottom: 30px !important;
+        padding-left: 0 !important;
+        text-align: center !important;
+        display: flex !important;
+        justify-content: center !important;
+        width: 100% !important;
+    }
+    
+    /* 🔥 HIDDEN TEXT TRICK: Hide actual text node, leave emoji/icon */
+    .sidebar-brand {
+        visibility: hidden;
+    }
+    .sidebar-brand::before {
+        content: "🧠"; /* Agar logo me brain emoji h to yahan change kar skte ho */
+        visibility: visible;
+        display: block;
+        text-align: center;
+        width: 100%;
+    }
+
+    .sidebar nav {
+        flex-direction: column !important;
+        gap: 12px !important;
+        width: 100% !important;
+        align-items: center !important;
+    }
+
+    /* Hide the text links inside sidebar, leave icons visible */
+    .sidebar nav a {
+        padding: 12px !important;
+        justify-content: center !important;
+        width: 50px !important;
+        height: 50px !important;
+        font-size: 0 !important; /* Text content hidden cleanly */
+        border-radius: 14px !important;
+    }
+
+    /* Force show only the icons/emojis */
+    .sidebar nav a span, .sidebar nav a svg, .sidebar nav a i {
+        font-size: 18px !important;
+        margin: 0 !important;
+        display: inline-block !important;
+    }
+
+    /* Bottom Logout area cleanup */
+    .sidebar-footer {
+        width: 100% !important;
+        border-top: none !important;
+        padding-top: 0 !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+
+    /* Convert logout button to an icon pill */
+    .logout-btn, .logout-container-btn {
+        width: 50px !important;
+        height: 50px !important;
+        padding: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 0 !important; /* Text hidden */
+        border-radius: 14px !important;
+    }
+
+    .logout-btn::before, .logout-container-btn::before {
+        content: "🚪"; /* Logout icon placeholder */
+        font-size: 16px !important;
+        visibility: visible;
+    }
+
+    /* Dynamic Content wrapper gets the remaining screen space */
+    .content-wrapper, .content, main {
+        padding: 30px 20px !important;
+        width: calc(100% - 80px) !important; /* Dynamic calculation subtraction */
+        max-width: none !important;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Micro adjustment for smaller phones */
+    .sidebar, aside {
+        width: 70px !important;
+        padding: 20px 5px !important;
+    }
+    .content-wrapper, .content, main {
+        width: calc(100% - 70px) !important;
+        padding: 15px !important;
+    }
+}
+
+
+/* ==========================================
+   🔥 MOBILE RESPONSIVE SIDEBAR (FOR MOBILE)
+   ========================================== */
+@media (max-width: 768px) {
+    /* Sidebar ko mobile par chhupa rahe hain */
+    .sidebar {
+        position: fixed;
+        left: -250px; 
+        top: 0;
+        height: 100%;
+        width: 250px;
+        z-index: 999;
+        background-color: #111827; /* Jo bhi teri sidebar ka rang hai, wo yahan rakhna */
+        transition: all 0.3s ease;
+    }
+
+    /* Jab toggle active hoga toh sidebar slide karke bahar aayega */
+    .sidebar.active {
+        left: 0;
+    }
+
+    /* Mobile Toggle Button (3 Lines ☰) */
+    .mobile-nav-toggle {
+        display: block !important;
+        position: fixed;
+        top: 15px;
+        left: 15px;
+        background: #ec4899; /* Pink color theme */
+        color: white;
+        border: none;
+        padding: 8px 14px;
+        font-size: 22px;
+        cursor: pointer;
+        border-radius: 6px;
+        z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+}
+
+/* Laptop/Desktop par 3 lines waala button nahi dikhega */
+.mobile-nav-toggle {
+    display: none;
+}
