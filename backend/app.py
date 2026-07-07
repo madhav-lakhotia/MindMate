@@ -213,7 +213,10 @@ def trigger_analysis():
 
 @app.route("/profile")
 def profile():
-    username = session.get('logged_user') or session.get('username') or 'Guest'
+    username = session.get("logged_user")
+
+    if not username:
+        return redirect("/")
 
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
@@ -315,10 +318,13 @@ def login():
         cursor.execute("SELECT * FROM users WHERE username=?", (username,))
         user = cursor.fetchone()
         conn.close()
-
         if user and check_password_hash(user[5], password):
-            session['logged_user'] = username 
-            return jsonify({"success": True, "username": username})
+            session["logged_user"] = username
+            session.permanent = True
+            return jsonify({
+                "success": True,
+                "username": username
+                })
         else:
             return jsonify({"success": False, "message": "Invalid Username or Password"})
     except Exception as e:
@@ -421,9 +427,9 @@ def legacy_predict():
 @app.route("/update_profile", methods=["POST"])
 def update_profile():
     # 1. Pehle user validation check karo
-    username = session.get('logged_user') or session.get('username')
+    username = session.get("logged_user")
     if not username:
-        return redirect('/login')
+        return redirect("/")
         
     try:
         # 2. HTML Form se exact correct fields data read karo
@@ -461,9 +467,9 @@ def update_profile():
 # 2. ACADEMIC INFORMATION UPDATION ENGINE (Safe Mode)
 @app.route("/update_academic", methods=["POST"])
 def update_academic():
-    username = session.get('logged_user') or session.get('username')
+    username = session.get("logged_user")
     if not username:
-        return redirect('/login')
+        return redirect("/")
         
     try:
         # Form se fields read ho rahi hain
@@ -495,9 +501,9 @@ def update_academic():
 # 3. WELLNESS GOALS UPDATION ENGINE (Safe Mode)
 @app.route("/update_goals", methods=["POST"])
 def update_goals():
-    username = session.get('logged_user') or session.get('username')
+    username = session.get("logged_user")
     if not username:
-        return redirect('/login')
+        return redirect("/")
         
     try:
         # Drop-downs se values capture ho rahi hain
