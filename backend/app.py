@@ -27,8 +27,6 @@ app = Flask(__name__,
             static_folder=STATIC_DIR,
             static_url_path="")
 
-# 🌟 YEH LINE JODNI HAI (Badi images ke liye size limit 16MB badha di)
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 app.secret_key = "mindmate_premium_ultra_secret_key_encryption"
 
@@ -233,17 +231,17 @@ def profile():
             pass  # Column agar pehle se hai toh koi dikkat nahi
 
     # Ab jab columns exist karte hain, tab database se safe fetch karo
-    # Ab jab columns exist karte hain, tab database se safe fetch karo (Added avatar here)
+   
     cursor.execute("""
         SELECT fullname, email, phone, age, gender, height, weight, location, 
-               branch, year, semester, sleep_goal, water_goal, steps_goal, screen_goal, stress_goal, avatar 
+               branch, year, semester, sleep_goal, water_goal, steps_goal, screen_goal, stress_goal
         FROM users WHERE username = ?
     """, (username,))
     
     row = cursor.fetchone()
     conn.close()
 
-    # Data dictionary framework validation (Added avatar here)
+    
     if row:
         profile_details = {
             "username": username,
@@ -263,10 +261,9 @@ def profile():
             "steps_goal": row[13] if row[13] else "",
             "screen_goal": row[14] if row[14] else "",
             "stress_goal": row[15] if row[15] else "",
-            "avatar": row[16] if row[16] else ""  # <-- Yeh line missing thi!
         }
     else:
-        profile_details = {"username": username, "avatar": ""}
+        profile_details = {"username": username, "fullname": "", "email": "", "phone": "", "age": "", "gender": "", "height": "", "weight": "", "location": "", "branch": "", "year": "", "semester": "", "sleep_goal": "", "water_goal": "", "steps_goal": "", "screen_goal": "", "stress_goal": ""}
 
     return render_template("profile.html", user=profile_details)
 
@@ -421,7 +418,6 @@ def submit_assessment():
 def legacy_predict():
     return submit_assessment()
 
-# 1. PROFILE UPDATION ENGINE
 @app.route("/update_profile", methods=["POST"])
 def update_profile():
     # 1. Pehle user validation check karo
@@ -530,42 +526,7 @@ def update_goals():
     except Exception as e:
         print(f"[CRITICAL GOALS UPDATE ERROR]: {str(e)}")
         return f"Goals Database Error: {str(e)}", 500
-    
-# ====================================================
-# 🔥 DYNAMIC PROFILE PICTURE UPDATE ENGINE
-# ====================================================
-# 1. PROFILE PICTURE UPLOAD ROUTE (Safe Base64/Text Storage Mode)
-@app.route("/update_avatar", methods=["POST"])
-def update_avatar():
-    username = session.get('logged_user') or session.get('username')
-    if not username:
-        return jsonify({"success": False, "message": "User not logged in"}), 401
         
-    try:
-        # data extract handle mode
-        data = request.get_json(silent=True) or {}
-        avatar_url = data.get("avatar_url", "")
-
-        if not avatar_url:
-            return jsonify({"success": False, "message": "No image data received"}), 400
-
-        conn = sqlite3.connect(db_path)
-        cursor = conn.cursor()
-        
-        # Column validation
-        try:
-            cursor.execute("ALTER TABLE users ADD COLUMN avatar TEXT")
-        except sqlite3.OperationalError:
-            pass
-
-        cursor.execute("UPDATE users SET avatar = ? WHERE username = ?", (avatar_url, username))
-        conn.commit()
-        conn.close()
-        
-        return jsonify({"success": True, "message": "Avatar updated successfully"}), 200
-    except Exception as e:
-        print(f"[CRITICAL AVATAR ERROR]: {str(e)}")
-        return jsonify({"success": False, "message": str(e)}), 500
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=7860, debug=False)
