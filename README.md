@@ -1,3 +1,13 @@
+---
+title: MindMate
+emoji: 🧠
+colorFrom: indigo
+colorTo: purple
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # 🧠 MindMate: Your Personal AI-Powered Wellness Companion
 
 ![MindMate Banner](https://img.shields.io/badge/Status-Active-brightgreen)
