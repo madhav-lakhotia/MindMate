@@ -13,10 +13,16 @@
 
 <body>
 
+    <button class="menu-btn" id="menuBtn">
+    <i class="fa-solid fa-bars"></i>
+</button>
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
 <div class="container">
 
-    <div class="col-lg-2 sidebar">
-    <div class="logo-section">
+<div class="sidebar" id="sidebar">
+            <div class="logo-section">
         <h5>🧠 MindMate</h5>
     </div>
 
@@ -285,6 +291,32 @@ function triggerOptimizationSimulation() {
     updateFutureBCards(98, 95, 12, 8, 97);
     document.getElementById("insightTextB").innerText = "🔥 Ideal State Generated! High habits compliance completely eliminates burnout risks and builds premium wellness score vectors.";
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const menu = document.getElementById("menuBtn");
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("sidebarOverlay");
+
+    if (menu && sidebar && overlay) {
+
+        menu.addEventListener("click", function () {
+
+            sidebar.classList.toggle("active");
+            overlay.classList.toggle("active");
+
+        });
+
+        overlay.addEventListener("click", function () {
+
+            sidebar.classList.remove("active");
+            overlay.classList.remove("active");
+
+        });
+
+    }
+
+});
 </script>
 </body>
 </html>

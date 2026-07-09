@@ -27,15 +27,15 @@ body {
 
     /* Sidebar transforms into a slim icon bar */
     .sidebar, aside {
-        width: 80px !important; /* Fixed micro width so it doesn't break */
+position: fixed !important;
         height: 100vh !important;
-        position: sticky !important;
+position: fixed !important;
         top: 0 !important;
         padding: 25px 10px !important;
         display: flex !important;
         flex-direction: column !important;
-        justify-content: space-between !important;
-        align-items: center !important;
+        justify-content: flex-start !important;
+align-items: stretch !important;
         border-right: 1px solid rgba(0, 0, 0, 0.05) !important;
         border-bottom: none !important;
         background-size: 180% !important; /* Leaves responsive scaling */
@@ -124,39 +124,25 @@ body {
     }
 }
 
-@media (max-width: 768px) {
-    /* Micro adjustment for smaller phones */
-    .sidebar, aside {
-        width: 70px !important;
-        padding: 20px 5px !important;
-    }
-    .content-wrapper, .content, main {
-        width: calc(100% - 70px) !important;
-        padding: 15px !important;
-    }
-}
-
-
 /* ==========================================
    🔥 MOBILE RESPONSIVE SIDEBAR (FOR MOBILE)
    ========================================== */
 @media (max-width: 768px) {
     /* Sidebar ko mobile par chhupa rahe hain */
     .sidebar {
-        position: fixed;
-        left: -250px; 
-        top: 0;
-        height: 100%;
-        width: 250px;
-        z-index: 999;
-        background-color: #111827; /* Jo bhi teri sidebar ka rang hai, wo yahan rakhna */
-        transition: all 0.3s ease;
-    }
+    position: fixed !important;
+    left: -280px !important;
+    top: 0 !important;
+    width: 280px !important;
+    height: 100vh !important;
+    z-index: 9999 !important;
+    transition: .35s ease !important;
+}
 
     /* Jab toggle active hoga toh sidebar slide karke bahar aayega */
-    .sidebar.active {
-        left: 0;
-    }
+   .sidebar.active {
+    left: 0 !important;
+}
 
     /* Mobile Toggle Button (3 Lines ☰) */
     .mobile-nav-toggle {

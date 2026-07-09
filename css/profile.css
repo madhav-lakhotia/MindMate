@@ -38,7 +38,7 @@ SIDEBAR
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    position: relative;
+    position: fixed;
     z-index: 10;
 }
 
@@ -374,51 +374,6 @@ GRID INFO CARDS (Full-Width Stacked Layout Like Image 1)
     .graph-header { flex-direction: column; gap: 10px; }
 }
 
-/* --- Desktop layout ko safe rakh ke sirf responsive spacing --- */
-@media (max-width: 1200px) {
-    body {
-        flex-direction: column !important; /* Sidebar upar, content niche */
-    }
-    .sidebar, aside {
-        width: 100% !important;
-        height: auto !important;
-        position: relative !important;
-        padding: 20px !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        background-image: none !important; /* Mobile pe background leaves overlap rokne ke liye */
-    }
-    .sidebar nav {
-        flex-direction: row !important;
-        flex-wrap: wrap !important;
-        justify-content: center !important;
-        gap: 10px !important;
-        margin-bottom: 20px;
-    }
-    .sidebar nav a {
-        padding: 10px 14px !important;
-        font-size: 14px !important;
-    }
-    .sidebar-brand {
-        margin-bottom: 20px !important;
-        padding-left: 0 !important;
-    }
-    .sidebar-footer {
-        width: 100% !important;
-        max-width: 300px;
-    }
-    .content-wrapper, .content, main {
-        width: 100% !important;
-        padding: 20px !important;
-    }
-    /* Grids stack properly */
-    .grid-container, .charts-grid, .info-grid, .dashboard-grid {
-        grid-template-columns: 1fr !important;
-        gap: 20px !important;
-    }
-}
-
 
 /* --- Profile Details Card Adaptability --- */
 @media (max-width: 1024px) {
@@ -431,4 +386,93 @@ GRID INFO CARDS (Full-Width Stacked Layout Like Image 1)
     .profile-details-grid {
         grid-template-columns: 1fr !important;
     }
+}
+
+.menu-btn{
+display:none;
+}
+
+.sidebar-overlay{
+display:none;
+}
+
+@media(max-width:768px){
+
+.menu-btn{
+display:flex;
+align-items:center;
+justify-content:center;
+position:fixed;
+top:18px;
+right:18px;
+width:46px;
+height:46px;
+border:none;
+border-radius:12px;
+background:#8b5cf6;
+color:#fff;
+font-size:20px;
+cursor:pointer;
+z-index:10001;
+box-shadow:0 10px 30px rgba(139,92,246,.35);
+}
+
+.sidebar{
+left:-280px !important;
+top:0;
+width:280px !important;
+height:100vh !important;
+transition:.35s ease;
+z-index:10000;
+overflow-y:auto;
+}
+
+.sidebar.active{
+left:0 !important;
+}
+
+.sidebar-overlay{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.45);
+z-index:9999;
+}
+
+.sidebar-overlay.active{
+display:block;
+}
+
+.profile-wrapper{
+padding:90px 18px 20px !important;
+}
+
+.profile-card{
+padding:20px !important;
+}
+
+.info-card{
+padding:20px !important;
+}
+
+.member-card{
+padding:18px !important;
+}
+
+.info-grid{
+grid-template-columns:1fr !important;
+}
+
+.info-grid div:nth-child(even){
+text-align:left;
+margin-bottom:12px;
+}
+
+.mobile-text-center{
+text-align:center;
+}
+
 }

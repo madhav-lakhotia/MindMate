@@ -15,10 +15,16 @@
 
 <body>
 
+    <button class="menu-btn" id="menuBtn">
+    <i class="fa-solid fa-bars"></i>
+</button>
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
 <div class="dashboard-container">
 
-    <div class="col-lg-2 sidebar">
-    <div class="logo-section">
+<div class="sidebar" id="sidebar">
+        <div class="logo-section">
         <h5>🧠 MindMate</h5>
     </div>
 
@@ -327,6 +333,36 @@ function generateAIInsight(stress, sleep) {
         insightBox.innerText = "📈 Your stress indicators have improved compared to last week. Maintaining healthy sleep patterns and mindfulness exercises can further boost your overall wellness metrics.";
     }
 }
+document.addEventListener("DOMContentLoaded",function(){
+
+const menu=document.getElementById("menuBtn");
+
+const sidebar=document.getElementById("sidebar");
+
+const overlay=document.getElementById("sidebarOverlay");
+
+if(menu && sidebar && overlay){
+
+menu.onclick=function(){
+
+sidebar.classList.toggle("active");
+
+overlay.classList.toggle("active");
+
+};
+
+overlay.onclick=function(){
+
+sidebar.classList.remove("active");
+
+overlay.classList.remove("active");
+
+};
+
+}
+
+});
+
 </script>
 </body>
 </html>

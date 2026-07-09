@@ -13,10 +13,16 @@
 </head>
 <body>
 
+<button class="menu-btn" id="menuBtn">
+    <i class="fa-solid fa-bars"></i>
+</button>
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
     <div class="ambient-bubble-green"></div>
     <div class="ambient-bubble-yellow"></div>
 
-          <div class="col-lg-2 sidebar">
+          <div class="sidebar" id="sidebar">
     <div class="logo-section">
         <h5>🧠 MindMate</h5>
     </div>
@@ -257,6 +263,32 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+document.addEventListener("DOMContentLoaded",function(){
+
+const menu=document.getElementById("menuBtn");
+const sidebar=document.getElementById("sidebar");
+const overlay=document.getElementById("sidebarOverlay");
+
+if(menu && sidebar && overlay){
+
+menu.onclick=function(){
+
+sidebar.classList.toggle("active");
+overlay.classList.toggle("active");
+
+};
+
+overlay.onclick=function(){
+
+sidebar.classList.remove("active");
+overlay.classList.remove("active");
+
+};
+
+}
+
+});
+
 </script>
 </body>
 </html>

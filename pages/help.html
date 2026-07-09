@@ -29,6 +29,7 @@ body{
     height:100%;
     background:rgba(0,0,0,0.2);
     display:none;
+    z-index:10000;
 }
 
 /* Popup */
@@ -37,13 +38,16 @@ body{
     right:30px;
     bottom:30px;
     width:350px;
+    max-width:95vw;
     height:500px;
+    max-height:85vh;
     background:white;
     border-radius:20px;
     overflow:hidden;
     box-shadow:0 10px 30px rgba(0,0,0,0.15);
     display:none;
     flex-direction:column;
+    z-index:10001;
 }
 
 /* Header */
@@ -125,6 +129,55 @@ body{
     cursor:pointer;
     font-size:16px;
 }
+
+@media (max-width:768px){
+
+.help-btn{
+
+margin:20px;
+width:calc(100% - 40px);
+
+}
+
+.chat-popup{
+
+left:50%;
+top:50%;
+
+right:auto;
+bottom:auto;
+
+transform:translate(-50%,-50%);
+
+width:95vw;
+height:85vh;
+
+border-radius:18px;
+
+}
+
+.chat-header h3{
+
+font-size:16px;
+
+}
+
+.option-btn{
+
+font-size:14px;
+padding:12px;
+
+}
+
+.bot-message,
+.solution-box{
+
+font-size:14px;
+
+}
+
+}
+
 </style>
 </head>
 <body>
