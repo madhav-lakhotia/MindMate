@@ -27,7 +27,7 @@ body {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    position: fixed;
+    position: relative;
     top: 0;
     z-index: 10;
 }
