@@ -415,10 +415,15 @@ body {
     .overview-wrapper, .bottom-grid { grid-template-columns: 1fr; }
 }
 @media(max-width:900px){
-    .dashboard-container { flex-direction: column; }
-    .sidebar { width: 100%; height: auto; position: relative; }
-    .main-content { padding: 20px; }
-    .twin-grid { grid-template-columns: 1fr; }
+
+    .main-content{
+        padding:20px;
+    }
+
+    .twin-grid{
+        grid-template-columns:1fr;
+    }
+
 }
 @media(max-width:600px){
     .cards-grid { grid-template-columns: 1fr; }
@@ -427,47 +432,160 @@ body {
     .graph-header { flex-direction: column; gap: 10px; }
 }
 
-/* --- Desktop layout ko safe rakh ke sirf responsive spacing --- */
-@media (max-width: 1200px) {
-    body {
-        flex-direction: column !important; /* Sidebar upar, content niche */
+/* ===========================================
+   MOBILE OFF-CANVAS SIDEBAR
+=========================================== */
+
+.menu-btn{
+    display:none;
+}
+
+@media (max-width:768px){
+
+    .dashboard-container{
+        display:block;
     }
-    .sidebar, aside {
-        width: 100% !important;
-        height: auto !important;
-        position: relative !important;
-        padding: 20px !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        background-image: none !important; /* Mobile pe background leaves overlap rokne ke liye */
+
+    /* Hamburger Button */
+    .menu-btn{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+
+        position:fixed;
+        top:16px;
+        left:auto;
+        right:16px;
+
+        width:42px;
+        height:42px;
+
+        border:none;
+        border-radius:10px;
+
+        background:#8b5cf6;
+        color:#fff;
+
+        font-size:18px;
+        cursor:pointer;
+
+        z-index:9999;
+
+        box-shadow:0 10px 25px rgba(0,0,0,.15);
     }
-    .sidebar nav {
-        flex-direction: row !important;
-        flex-wrap: wrap !important;
-        justify-content: center !important;
-        gap: 10px !important;
-        margin-bottom: 20px;
+
+    /* Sidebar Hidden */
+    .sidebar{
+
+        position:fixed !important;
+
+        top:0;
+        left:-100%;
+
+        width:280px;
+
+        height:100vh;
+
+        transition:.35s cubic-bezier(.4,0,.2,1);
+
+        z-index:9998;
+
+        overflow-y:auto;
     }
-    .sidebar nav a {
-        padding: 10px 14px !important;
-        font-size: 14px !important;
+
+    /* Sidebar Open */
+    .sidebar.active{
+
+        left:0;
+        box-shadow:0 0 0 9999px rgba(0,0,0,.45);
     }
-    .sidebar-brand {
-        margin-bottom: 20px !important;
-        padding-left: 0 !important;
+
+    /* Hide Leaves */
+    .sidebar-leaves{
+
+        display:none;
     }
-    .sidebar-footer {
-        width: 100% !important;
-        max-width: 300px;
+
+    /* Dashboard Content */
+    .main-content{
+
+        width:100%;
+        margin-left:0;
+        padding:80px 20px 20px;
     }
-    .content-wrapper, .content, main {
-        width: 100% !important;
-        padding: 20px !important;
+
+    /* Header */
+    .top-header{
+
+        flex-direction:column;
+        align-items:flex-start;
+        gap:20px;
     }
-    /* Grids stack properly */
-    .grid-container, .charts-grid, .info-grid, .dashboard-grid {
-        grid-template-columns: 1fr !important;
-        gap: 20px !important;
+
+    .profile-section{
+
+        width:100%;
+        justify-content:space-between;
     }
+
+    /* Cards */
+    .cards-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    /* Overview */
+    .overview-wrapper{
+
+        grid-template-columns:1fr;
+    }
+
+    /* Bottom Grid */
+    .bottom-grid{
+
+        grid-template-columns:1fr;
+    }
+
+    /* Wellness Twin */
+    .twin-grid{
+
+        grid-template-columns:1fr;
+    }
+
+}
+
+.mobile-header{
+
+display:none;
+
+}
+
+@media(max-width:768px){
+
+.mobile-header{
+
+display:flex;
+
+justify-content:flex-start;
+
+align-items:center;
+
+gap:15px;
+
+padding:20px;
+
+}
+
+.dashboard-title{
+
+display:none;
+
+}
+
+}
+
+.sidebar{
+
+box-shadow:15px 0 40px rgba(0,0,0,.25);
+
 }

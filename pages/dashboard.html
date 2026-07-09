@@ -13,6 +13,11 @@
 </head>
 
 <body>
+    
+
+    <button class="menu-btn" id="menuBtn" aria-label="Menu">
+    <i class="fa-solid fa-bars"></i>
+</button>
 
     <div class="blob blob1"></div>
     <div class="blob blob2"></div>
@@ -20,8 +25,8 @@
 
     <div class="dashboard-container">
 
-        <div class="col-lg-2 sidebar">
-            <div class="logo-section">
+<div class="col-lg-2 sidebar" id="sidebar">
+                <div class="logo-section">
                 <h5>🧠 MindMate</h5>
             </div>
             <ul class="nav-menu">
@@ -350,6 +355,54 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const menuBtn = document.getElementById("menuBtn");
+    const sidebar = document.getElementById("sidebar");
+
+    if (menuBtn && sidebar) {
+
+        menuBtn.addEventListener("click", function () {
+
+            if (sidebar.classList.contains("active")) {
+
+                sidebar.classList.remove("active");
+
+            } else {
+
+                sidebar.classList.add("active");
+
+            }
+
+        });
+
+    }
+
+});    
     </script>
+    <script>
+
+document.addEventListener("click",function(e){
+
+const sidebar=document.getElementById("sidebar");
+
+const menu=document.getElementById("menuBtn");
+
+if(!sidebar.classList.contains("active")) return;
+
+if(
+!sidebar.contains(e.target)
+&&
+!menu.contains(e.target)
+){
+
+sidebar.classList.remove("active");
+
+}
+
+});
+
+</script>
 </body>
 </html>

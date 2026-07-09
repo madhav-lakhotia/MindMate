@@ -9,6 +9,12 @@
     font-family:'Poppins',sans-serif;
 }
 
+html,
+body{
+    width:100%;
+    overflow-x:hidden;
+}
+
 body{
     background:linear-gradient(
         135deg,
@@ -18,11 +24,9 @@ body{
     );
 
     min-height:100vh;
-    overflow-x:hidden;
     position:relative;
     color:#34355f;
 }
-
 /* =========================
    BACKGROUND BLOBS
 ========================= */
@@ -520,9 +524,22 @@ footer h3{
 
 @media(max-width:768px){
 
-    .nav-links{
-        display:none;
-    }
+    nav{
+    flex-direction:column;
+    gap:20px;
+}
+
+.nav-links{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:18px;
+}
+
+.auth-buttons{
+    width:100%;
+    justify-content:center;
+}
 
     .hero-left h1{
         font-size:42px;
@@ -543,7 +560,7 @@ footer h3{
     .hero-circle{
         width:350px;
         height:350px;
-    }
+   }
 
     .hero-circle img{
         width:220px;
@@ -552,7 +569,7 @@ footer h3{
     .hero-buttons{
         flex-direction:column;
     }
-}
+} 
 /* =========================
    AUTH MODAL
 ========================= */
@@ -750,4 +767,165 @@ footer h3{
     margin-top:15px;
 
     line-height:1.5;
+}
+
+/* =========================================
+   MOBILE RESPONSIVE (PHONE)
+========================================= */
+
+@media screen and (max-width:768px){
+
+    nav{
+        width:95%;
+        padding:20px 0;
+        flex-direction:column;
+        gap:18px;
+        text-align:center;
+    }
+
+    .logo{
+        justify-content:center;
+    }
+
+    .logo-text h2{
+        font-size:24px;
+    }
+
+    .auth-buttons{
+        width:100%;
+        justify-content:center;
+    }
+
+    .login-btn,
+    .register-btn{
+        flex:1;
+        padding:12px;
+        font-size:15px;
+    }
+
+    /* HERO */
+
+    .hero{
+
+        width:95%;
+
+        flex-direction:column-reverse;
+
+        text-align:center;
+
+        gap:40px;
+
+        min-height:auto;
+
+        padding:40px 0;
+    }
+
+    .hero-left{
+
+        width:100%;
+    }
+
+    .hero-left h1{
+
+        font-size:38px;
+
+        line-height:1.2;
+    }
+
+    .hero-left p{
+
+        font-size:17px;
+
+        max-width:100%;
+
+        line-height:1.7;
+    }
+
+    .hero-buttons{
+
+        flex-direction:column;
+
+        width:100%;
+    }
+
+    .primary-btn,
+    .secondary-btn{
+
+        width:100%;
+    }
+
+    /* IMAGE */
+
+    .hero-circle{
+
+        width:300px;
+        height:300px;
+    }
+
+    .hero-circle img{
+
+        width:190px;
+    }
+
+    /* Hide floating cards */
+
+    .floating-card{
+
+        display:none;
+    }
+
+    /* FEATURES */
+
+    .features-section{
+
+        width:95%;
+
+        grid-template-columns:1fr;
+
+        gap:20px;
+    }
+
+    .feature-card{
+
+        min-height:auto;
+
+        padding:28px;
+    }
+
+    .feature-card h2{
+
+        font-size:28px;
+    }
+
+    .card-content{
+
+        max-height:200px;
+
+        opacity:1;
+
+        margin-top:15px;
+    }
+
+    footer{
+
+        padding:35px 20px;
+    }
+
+    /* LOGIN MODAL */
+
+    .auth-modal{
+
+        width:95%;
+
+        margin:15px;
+
+        padding:25px;
+
+        border-radius:20px;
+    }
+
+}
+
+*{
+    box-sizing:border-box;
 }

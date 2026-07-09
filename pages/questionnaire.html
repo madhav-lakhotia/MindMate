@@ -14,11 +14,17 @@
 </head>
 <body>
 
-<div class="container-fluid p-0 format-viewport">
-    <div class="row g-0 h-100">
+<div class="dashboard-container">
 
         <!-- SIDEBAR -->
-        <div class="col-lg-2 sidebar">
+        <button class="menu-btn" id="menuBtn">
+    <i class="fa-solid fa-bars"></i>
+</button>
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<div class="col-lg-2 sidebar" id="sidebar">
+
     <div class="logo-section">
         <h5>🧠 MindMate</h5>
     </div>
@@ -87,7 +93,7 @@
 </div>
 
         <!-- MAIN CONTENT CONFIGURATION PANEL -->
-        <div class="col-lg-10 h-100 raw-panel">
+        <div class="main-content raw-panel">
             
             <!-- CORE QUESTIONNAIRE VIEWS -->
             <div class="profile-wrapper" id="assessmentCoreContainer">
@@ -331,5 +337,40 @@
 <script src="/js/profile.js"></script>
 <script src="/js/questionnaire.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+const menu=document.getElementById("menuBtn");
+
+const sidebar=document.getElementById("sidebar");
+
+const overlay=document.getElementById("sidebarOverlay");
+
+menu.onclick=function(){
+
+sidebar.classList.toggle("active");
+
+overlay.classList.toggle("active");
+
+document.body.style.overflow=
+sidebar.classList.contains("active")
+?"hidden":"";
+
+}
+
+overlay.onclick=function(){
+
+sidebar.classList.remove("active");
+
+overlay.classList.remove("active");
+
+document.body.style.overflow="";
+
+}
+
+});
+
+</script>
 </body>
 </html>

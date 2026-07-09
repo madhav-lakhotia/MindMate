@@ -541,11 +541,11 @@
    ==================================================== */
 
 html, body {
-    height: 100vh;
-    max-height: 100vh;
+    min-height: 100vh;
     margin: 0;
     padding: 0;
-    overflow: hidden !important; /* Forces outer screen to strictly lock scrollbars */
+    overflow-x: hidden;
+    overflow-y: auto;
     background: linear-gradient(135deg, #faf7ff, #f5efff, #fff7fb);
 }
 
@@ -683,11 +683,101 @@ SIDEBAR
     .cards-grid { grid-template-columns: repeat(2, 1fr); }
     .overview-wrapper, .bottom-grid { grid-template-columns: 1fr; }
 }
-@media(max-width:900px){
-    .dashboard-container { flex-direction: column; }
-    .sidebar { width: 100%; height: auto; position: relative; }
-    .main-content { padding: 20px; }
-    .twin-grid { grid-template-columns: 1fr; }
+@media(max-width:768px){
+
+.menu-btn{
+display:flex;
+position:fixed;
+top:15px;
+left:15px;
+width:44px;
+height:44px;
+border:none;
+border-radius:12px;
+background:#8b5cf6;
+color:#fff;
+z-index:9999;
+}
+
+.sidebar{
+
+position:fixed;
+left:-280px;
+top:0;
+width:280px;
+height:100vh;
+transition:.35s;
+z-index:9998;
+
+}
+
+.sidebar.active{
+
+left:0;
+
+}
+
+.sidebar-overlay{
+
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.45);
+display:none;
+z-index:9997;
+
+}
+
+.sidebar-overlay.active{
+
+display:block;
+
+}
+
+.raw-panel{
+
+margin-left:0 !important;
+width:100% !important;
+
+}
+
+.profile-wrapper{
+
+padding:80px 18px 20px;
+
+}
+
+.assessment-section{
+
+padding:18px;
+
+}
+
+.slider-label{
+
+flex-direction:column;
+align-items:flex-start;
+gap:8px;
+
+}
+
+.action-footer-panel{
+
+flex-direction:column;
+gap:15px;
+
+}
+
+.btn-prev,
+.btn-next,
+.btn-submit{
+
+width:100%;
+
+}
+
 }
 @media(max-width:600px){
     .cards-grid { grid-template-columns: 1fr; }
@@ -696,47 +786,68 @@ SIDEBAR
     .graph-header { flex-direction: column; gap: 10px; }
 }
 
-/* --- Desktop layout ko safe rakh ke sirf responsive spacing --- */
-@media (max-width: 1200px) {
-    body {
-        flex-direction: column !important; /* Sidebar upar, content niche */
-    }
-    .sidebar, aside {
-        width: 100% !important;
-        height: auto !important;
-        position: relative !important;
-        padding: 20px !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        background-image: none !important; /* Mobile pe background leaves overlap rokne ke liye */
-    }
-    .sidebar nav {
-        flex-direction: row !important;
-        flex-wrap: wrap !important;
-        justify-content: center !important;
-        gap: 10px !important;
-        margin-bottom: 20px;
-    }
-    .sidebar nav a {
-        padding: 10px 14px !important;
-        font-size: 14px !important;
-    }
-    .sidebar-brand {
-        margin-bottom: 20px !important;
-        padding-left: 0 !important;
-    }
-    .sidebar-footer {
-        width: 100% !important;
-        max-width: 300px;
-    }
-    .content-wrapper, .content, main {
-        width: 100% !important;
-        padding: 20px !important;
-    }
-    /* Grids stack properly */
-    .grid-container, .charts-grid, .info-grid, .dashboard-grid {
-        grid-template-columns: 1fr !important;
-        gap: 20px !important;
-    }
+@media(max-width:900px){
+
+.container-fluid{
+padding:0 !important;
+}
+
+.row{
+margin:0 !important;
+}
+
+.sidebar{
+
+width:100% !important;
+height:auto !important;
+position:relative !important;
+padding:20px !important;
+
+}
+
+.raw-panel{
+
+width:100% !important;
+height:auto !important;
+max-height:none !important;
+overflow:visible !important;
+
+}
+
+.profile-wrapper{
+
+padding:20px !important;
+
+}
+
+.assessment-section{
+
+padding:20px !important;
+
+}
+
+.slider-label{
+
+flex-direction:column;
+align-items:flex-start;
+gap:8px;
+
+}
+
+.action-footer-panel{
+
+display:flex;
+flex-direction:column;
+gap:12px;
+
+}
+
+.btn-prev,
+.btn-next,
+.btn-submit{
+
+width:100%;
+
+}
+
 }
